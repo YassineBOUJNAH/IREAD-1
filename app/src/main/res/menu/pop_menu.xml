@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    <item
+        android:id="@+id/pp_deja"
+        android:title="Read"
+        />
+    <item
+        android:id="@+id/pp_entrain"
+        android:title="Currently Reading"
+        />
+    <item
+        android:id="@+id/pp_alire"
+        android:title="Want to Read"
+        />
+</menu>

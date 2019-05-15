@@ -1,0 +1,85 @@
+<LinearLayout
+    android:id="@+id/fragment_page_news_rootview"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.iread.Fragment.BlankFragment"
+    android:gravity="center"
+    android:background="@color/colorSandLight"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_marginTop="80dp">
+        <Button
+            android:id="@+id/fragment_blank_add"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ajouter des amis"/>
+
+        <Button
+            android:id="@+id/fragment_blank_view_invitation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="voir les invitation"/>
+        <Button
+            android:id="@+id/fragment_blank_view_friends"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="voir vos amis"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="1">
+
+        <!--ETERAGES-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="ETERAGES"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+        <Button
+            android:id="@+id/fragment_blank_btn_deja"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Deja Lu"
+            android:textColor="#fff"
+            android:textSize="18sp"
+            android:background="@drawable/button_radius_primary_color"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_margin="@dimen/default_margin"
+            android:padding="@dimen/default_margin"/>
+
+        <Button
+            android:id="@+id/fragment_blank_btn_entrain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="En Train de Lire"
+            android:textColor="#fff"
+            android:textSize="18sp"
+            android:background="@drawable/button_radius_accent_color"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_margin="@dimen/default_margin"
+            android:padding="@dimen/default_margin"/>
+        <Button
+            android:id="@+id/fragment_blank_a_lire"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="a Lire"
+            android:textColor="#fff"
+            android:textSize="18sp"
+            android:background="@drawable/button_radius_error_color"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_margin="10dp"
+            android:padding="10dp"/>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.iread">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".controller.DefinTimeAndFieandsActivity"
+            android:label="Defin Time"
+            android:parentActivityName=".auth.HomeActivity"/>
+        <activity android:name=".controller.LivreActivity" />
+        <activity
+            android:name=".controller.DefiFormulaireActivity"
+            android:label="Add Friend"
+            android:parentActivityName=".controller.DefinTimeAndFieandsActivity" />
+        <activity
+            android:name=".controller.ResultatActivity"
+            android:label="Resultat"
+            android:parentActivityName=".auth.HomeActivity" />
+        <activity
+            android:name=".controller.QuizActivity"
+            android:label="Quiz"
+            android:parentActivityName=".auth.HomeActivity" />
+        <activity
+            android:name=".controller.DefiPersoActivity"
+            android:label="Lancer un Defi"
+            android:parentActivityName=".auth.HomeActivity" />
+        <activity
+            android:name=".controller.chatActivity"
+            android:label="chat" />
+        <activity android:name=".controller.ClickedFriendActivity" />
+        <activity
+            android:name=".controller.EntrainActivty"
+            android:label="En train de lire" />
+        <activity
+            android:name=".controller.DejaLuActivity"
+            android:label="Deja lu"
+            android:parentActivityName=".auth.HomeActivity" />
+        <activity
+            android:name=".controller.FriendDejaLuActivity"
+            android:label="Deja lu"
+            android:parentActivityName=".auth.HomeActivity" />
+        <activity
+            android:name=".controller.FriendEntrainActivity"
+            android:label="Entrain de lire"
+            android:parentActivityName=".auth.HomeActivity" />
+        <activity android:name=".controller.BookActivity" />
+        <activity
+            android:name=".controller.friend"
+            android:label="friends"
+            android:parentActivityName=".auth.HomeActivity" />
+        <activity
+            android:name=".controller.invitation"
+            android:parentActivityName=".auth.HomeActivity" />
+        <activity
+            android:name=".controller.SearchBooks"
+            android:label="Search Books"
+            android:parentActivityName=".auth.HomeActivity" />
+        <activity
+            android:name=".controller.SearchFriends"
+            android:label="Add Friends"
+            android:parentActivityName=".auth.HomeActivity">
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity
+            android:name=".options.SettingActivity"
+            android:label="Setting"
+            android:parentActivityName=".auth.HomeActivity">
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/AppTheme.NoTitle"> <!-- DISABLE TOOLBAR IN MAIN ACTIVITY -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".auth.HomeActivity"
+            android:label="IREAD"
+            android:parentActivityName=".MainActivity" />
+    </application>
+
+</manifest>

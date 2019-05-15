@@ -1,0 +1,17 @@
+<LinearLayout
+    android:id="@+id/fragment_page_news_rootview"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.iread.Fragment.ParamPageFragment"
+    android:gravity="center"
+    android:background="@color/colorSandLight"
+    >
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/friend_chat_recycleView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

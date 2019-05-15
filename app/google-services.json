@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "585440310053",
+    "firebase_url": "https://iread-464ee.firebaseio.com",
+    "project_id": "iread-464ee",
+    "storage_bucket": "iread-464ee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:585440310053:android:fe3287746e91d991",
+        "android_client_info": {
+          "package_name": "com.example.iread"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "585440310053-nq83ci668v8b67uoqda7dvpsv1p429dk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.iread",
+            "certificate_hash": "bb92b3cef9f2645d052154ea765fc3806685decd"
+          }
+        },
+        {
+          "client_id": "585440310053-2r95f6p0s9i4uel6b4itjus70ekv55rk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjCRfiHbLN7XvqXBBhAHiqejWmc9OaziE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "585440310053-2r95f6p0s9i4uel6b4itjus70ekv55rk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

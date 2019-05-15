@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".controller.ResultatActivity">
+
+
+    <TextView
+        android:id="@+id/rest_total"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="Total  :"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="150dp"
+        android:layout_marginStart="40dp"/>
+    <TextView
+        android:id="@+id/rest_tota2"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="vfdvvddv"
+        android:layout_marginTop="150dp"
+        android:layout_toRightOf="@id/rest_correct1"
+        android:layout_marginStart="40dp"/>
+    <TextView
+        android:id="@+id/rest_correct1"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="Correcte Question"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="250dp"
+        android:layout_marginStart="40dp"/>
+    <TextView
+        android:id="@+id/rest_correct2"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="vfdvvddv"
+        android:layout_marginTop="250dp"
+        android:layout_toRightOf="@id/rest_correct1"
+        android:layout_marginStart="40dp"
+        />
+    <TextView
+        android:id="@+id/rest_wrong1"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="Wrong Question"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="350dp"
+        android:layout_marginStart="40dp"/>
+    <TextView
+        android:id="@+id/rest_wrong2"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="vfdvvddv"
+        android:layout_marginTop="350dp"
+        android:layout_toRightOf="@id/rest_correct1"
+        android:layout_marginStart="40dp"/>
+
+    <Button
+        android:id="@+id/rest_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/rest_wrong2"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:text="Home" />
+</RelativeLayout>
