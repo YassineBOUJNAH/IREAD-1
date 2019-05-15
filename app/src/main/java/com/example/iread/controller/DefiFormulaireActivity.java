@@ -100,7 +100,6 @@ public class DefiFormulaireActivity extends BaseActivity {
         recyclerView.setAdapter(adapter);
 
 
-
         adapter.setOnfriendClickListener(new FiendDefiAdapter.OnFriendClickListener() {
             @Override
             public void onFriendClick(DocumentSnapshot documentSnapshot, int position) {
