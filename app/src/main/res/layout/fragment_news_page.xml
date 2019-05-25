@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:textColor="@color/cardview_dark_background"
-            android:text="Defi de cette semain"/>
+            android:text="Defi de cette mois"/>
         <ScrollView android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -78,7 +78,7 @@
                                 android:id="@+id/defi_start"
                                 android:layout_width="100dp"
                                 android:layout_height="60dp"
-                                android:text="Start"
+                                android:text="Lancer"
                                 />
                             <Button
                                 android:id="@+id/defi_lire"
@@ -145,7 +145,7 @@
                                 android:id="@+id/defi_start2"
                                 android:layout_width="100dp"
                                 android:layout_height="60dp"
-                                android:text="Start"
+                                android:text="lancer"
                                 />
                             <Button
                                 android:id="@+id/defi_lire2"
@@ -212,7 +212,7 @@
                                 android:id="@+id/defi_start3"
                                 android:layout_width="100dp"
                                 android:layout_height="60dp"
-                                android:text="Start"
+                                android:text="lancer"
                                 />
                             <Button
                                 android:id="@+id/defi_lire3"

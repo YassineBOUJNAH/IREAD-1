@@ -36,7 +36,7 @@ public class DefiFormulaireActivity extends BaseActivity {
 
     private CollectionReference friendRef = UserHelper.getUsersCollection().document(getCurrentUser().getUid()).collection("friends");
     //private CollectionReference friendChallenge = UserHelper.getUsersCollection().document(getCurrentUser().getUid()).collection("Defi");
-    private CollectionReference friendChallenge =  FirebaseFirestore.getInstance().collection("Defi");
+    private CollectionReference friendChallenge =  FirebaseFirestore.getInstance().collection("DefiRequest");
     private String docid;
 
     private FiendDefiAdapter adapter;

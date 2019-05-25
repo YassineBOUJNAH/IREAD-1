@@ -22,7 +22,7 @@ import com.google.firebase.firestore.Query;
 
 public class AccepteDefi2Activity extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference col = db.collection("Defi");
+    private CollectionReference col = db.collection("DefiRequest");
 
     private AcceptDefiAdapter Adapter;
 
