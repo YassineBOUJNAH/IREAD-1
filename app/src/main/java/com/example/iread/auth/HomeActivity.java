@@ -138,16 +138,19 @@ public class HomeActivity extends BaseActivity implements NewsPageFragment.OnQui
     @Override
     public void OnStart1Click(View view){
         Intent myint = new Intent(this, DefinTimeAndFieandsActivity.class);
-        myint.putExtra("Quiz",String.valueOf(1));
+        myint.putExtra("Quiz",1);
         startActivity(myint);
     }
 
 
     @Override
     public void OnStart2Click(View view){
-        Intent myint = new Intent(this,QuizActivity.class);
-        myint.putExtra("child",String.valueOf(2));
+        Intent myint = new Intent(this, DefinTimeAndFieandsActivity.class);
+        myint.putExtra("Quiz",2);
         startActivity(myint);
+        //Intent myint = new Intent(this,QuizActivity.class);
+        //.putExtra("child",String.valueOf(2));
+       // startActivity(myint);
     }
 
     @Override

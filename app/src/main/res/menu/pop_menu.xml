@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     <item
         android:id="@+id/pp_deja"
-        android:title="Read"
+        android:title="Deja Lu"
         />
     <item
         android:id="@+id/pp_entrain"
-        android:title="Currently Reading"
+        android:title="Entrain De Lire "
         />
     <item
         android:id="@+id/pp_alire"
-        android:title="Want to Read"
+        android:title="A Lire"
         />
 </menu>

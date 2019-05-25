@@ -58,7 +58,7 @@
                         android:layout_gravity="center"
                         android:layout_height="wrap_content"
                         android:background="@drawable/link_background"
-                        android:text="Want to Read"
+                        android:text="A Lire"
                         android:padding="5dp"
                         android:textSize="15sp"
                         android:textColor="#fff"
@@ -95,18 +95,7 @@
                         android:id="@+id/aa_categorie"/>
 
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/aa_price"
-                        android:text="35 $"
-                        android:layout_marginTop="5dp"
-                        android:background="@drawable/rating_background"
-                        android:textColor="#fff"
-                        android:textSize="15sp"
-                        android:textStyle="bold"
-                        android:drawableStart="@drawable/ic_attach_money_black_24dp"
-                        android:paddingEnd="5dp"/>
+
 
                     <TextView
                         android:layout_width="wrap_content"

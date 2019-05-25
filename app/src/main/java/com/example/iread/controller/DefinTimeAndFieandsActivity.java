@@ -33,10 +33,10 @@ public class DefinTimeAndFieandsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 int time = Integer.parseInt(count.getText().toString());
+                Intent i = getIntent();
+                int quiz = i.getIntExtra("Quiz",3);
                 Intent intent = new Intent(DefinTimeAndFieandsActivity.this, DefiFormulaireActivity.class);
                 intent.putExtra("time",time);
-                Intent i = getIntent();
-                int quiz = i.getIntExtra("Quiz",1);
                 intent.putExtra("Quiz",quiz);
                 startActivity(intent);
             }
