@@ -11,12 +11,10 @@ import android.view.View;
 import com.example.iread.Adapters.PageAdapter;
 import com.example.iread.Fragment.BlankFragment;
 import com.example.iread.Fragment.NewsPageFragment;
-import com.example.iread.Fragment.ProfilePageFragment;
 import com.example.iread.R;
 import com.example.iread.base.BaseActivity;
 import com.example.iread.controller.ALireActivity;
-import com.example.iread.controller.DefiFormulaireActivity;
-import com.example.iread.controller.DefiPersoActivity;
+import com.example.iread.controller.AccepteDefi2Activity;
 import com.example.iread.controller.DefinTimeAndFieandsActivity;
 import com.example.iread.controller.DejaLuActivity;
 import com.example.iread.controller.EntrainActivty;
@@ -28,7 +26,7 @@ import com.example.iread.controller.friend;
 import com.example.iread.controller.invitation;
 import com.example.iread.options.SettingActivity;
 
-public class HomeActivity extends BaseActivity implements NewsPageFragment.OnQuizClickListener,ProfilePageFragment.OnAddClicklistener, BlankFragment.OnFriendClicklistener {
+public class HomeActivity extends BaseActivity implements NewsPageFragment.OnQuizClickListener, BlankFragment.OnFriendClicklistener {
 
 
 
@@ -99,12 +97,7 @@ public class HomeActivity extends BaseActivity implements NewsPageFragment.OnQui
         }
     }
 
-    @Override
-    public void onAddClick(View view) {
-        startActivity(new Intent(this, DefiPersoActivity.class));
-        //startActivity(new Intent(this, QuizActivity.class));
 
-    }
 
 
 ///manupiler AmisFrgament///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -138,6 +131,8 @@ public class HomeActivity extends BaseActivity implements NewsPageFragment.OnQui
     }
     @Override
     public void onALireClick(View view) {startActivity(new Intent(this, ALireActivity.class));}
+    @Override
+    public void onDefiReqView(View view){startActivity(new Intent(this, AccepteDefi2Activity.class));}
 
     ///Quiz Frag
     @Override

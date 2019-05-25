@@ -2,6 +2,7 @@ package com.example.iread.controller;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,27 +18,31 @@ import com.example.iread.api.UserHelper;
 import com.example.iread.auth.HomeActivity;
 import com.example.iread.base.BaseActivity;
 import com.example.iread.model.friends;
+import com.example.iread.model.friendsChallenge;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class DefiFormulaireActivity extends BaseActivity {
 
     private CollectionReference friendRef = UserHelper.getUsersCollection().document(getCurrentUser().getUid()).collection("friends");
-    private CollectionReference friendChallenge = UserHelper.getUsersCollection().document(getCurrentUser().getUid()).collection("friendsChallenge");
-
+    //private CollectionReference friendChallenge = UserHelper.getUsersCollection().document(getCurrentUser().getUid()).collection("Defi");
+    private CollectionReference friendChallenge =  FirebaseFirestore.getInstance().collection("Defi");
+    private String docid;
 
     private FiendDefiAdapter adapter;
 
-    public Map<String, Object> FriendData = new HashMap<>();
-    private int Nbrfriends = 1;
+    public Map<Integer,String> FriendData = new HashMap<Integer,String>();
+    private int Nbrfriends = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,12 +52,8 @@ public class DefiFormulaireActivity extends BaseActivity {
         setUpRecyclerView();
         //id checkbox :friend_defi_item_checkbox
         //save bar :friends_defi_toolbar
-        Intent i = getIntent();
-        int quiz = i.getIntExtra("Quiz",2);
-        int time = i.getIntExtra("time",3);
-        FriendData.put("Quiz",quiz);
-        FriendData.put("Time",time);
-        FriendData.put("SuperUser",FirebaseAuth.getInstance().getCurrentUser().getUid());
+
+
 
     }
     @Override
@@ -76,8 +77,28 @@ public class DefiFormulaireActivity extends BaseActivity {
     }
 
     private void save() {
-        FriendData.put("NbrOfUser",Nbrfriends);
-        friendChallenge.add(FriendData);
+        Intent i = getIntent();
+        int quiz = i.getIntExtra("Quiz",2);
+        int time = i.getIntExtra("time",3);
+        String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        //for (String j : FriendData.values()){ friendsChallenge challgdoc = new friendsChallenge(j, userid, quiz,time);friendChallenge.add(challgdoc); }
+        for(Map.Entry m:FriendData.entrySet()){
+                //System.out.println(m.getKey()+" "+m.getValue());
+            friendsChallenge challgdoc = new friendsChallenge(String.valueOf(m.getValue()), userid, quiz,time);
+            friendChallenge.document().set(challgdoc).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    Toast.makeText(getApplicationContext(),"Data added",Toast.LENGTH_SHORT).show();
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(getApplicationContext(),"Error "+ e.getMessage().toString(),Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
+
         startActivity(new Intent(getApplicationContext(), HomeActivity.class));
         finish();
     }
@@ -94,6 +115,7 @@ public class DefiFormulaireActivity extends BaseActivity {
 
         adapter = new FiendDefiAdapter(options);
 
+
         RecyclerView recyclerView = findViewById(R.id.friends_defi_recycleView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -107,7 +129,7 @@ public class DefiFormulaireActivity extends BaseActivity {
                 String id = documentSnapshot.getId();
                 Toast.makeText(getApplicationContext(),"position : "+position+" id : "+id,Toast.LENGTH_SHORT).show();
                 if (!FriendData.containsValue(id)){
-                    FriendData.put(String.valueOf(Nbrfriends),id);
+                    FriendData.put(Nbrfriends,id);
                     Nbrfriends++;
                 }
 

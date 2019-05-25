@@ -23,6 +23,7 @@ public class BlankFragment extends Fragment {
         void onDejaluClick(View view);
         void onEntrainClick(View view);
         void onALireClick(View view);
+        void onDefiReqView(View view);
     }
     private BlankFragment.OnFriendClicklistener addCalback;
 
@@ -65,6 +66,12 @@ public class BlankFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 addCalback.onALireClick(v);
+            }
+        });
+        result.findViewById(R.id.fragment_blank_view_defi).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addCalback.onDefiReqView(v);
             }
         });
         return result;

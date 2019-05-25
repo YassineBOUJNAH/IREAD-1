@@ -7,7 +7,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 import com.example.iread.Fragment.BlankFragment;
 import com.example.iread.Fragment.NewsPageFragment;
 import com.example.iread.Fragment.ParamPageFragment;
-import com.example.iread.Fragment.ProfilePageFragment;
 
 public class PageAdapter extends FragmentPagerAdapter {
 

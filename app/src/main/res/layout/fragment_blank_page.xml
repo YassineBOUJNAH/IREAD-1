@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
-        android:layout_marginTop="80dp">
+        android:layout_marginTop="50dp">
         <Button
             android:id="@+id/fragment_blank_add"
             android:layout_width="match_parent"
