@@ -35,16 +35,16 @@ public class AccepteDefi2Activity extends AppCompatActivity {
         configureToolbar();
 
     }
-    //
+    //.orderBy("dateFin", Query.Direction.DESCENDING)
     private void setupRecyleView() {
-        Query query = col.whereEqualTo("uiResever",FirebaseAuth.getInstance().getCurrentUser().getUid()).orderBy("dateFin", Query.Direction.DESCENDING);
+        Query query = col.orderBy("dateFin", Query.Direction.DESCENDING);
         FirestoreRecyclerOptions<friendsChallenge> options = new FirestoreRecyclerOptions.Builder<friendsChallenge>()
                 .setQuery(query, friendsChallenge.class)
                 .build();
         Adapter=new AcceptDefiAdapter(options);
 
         RecyclerView recyclerView = findViewById(R.id.acceptdefi2_activity_recyle);
-        recyclerView.setHasFixedSize(true);
+        //recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(Adapter);
     }
