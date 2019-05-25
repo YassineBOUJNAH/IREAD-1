@@ -1,9 +1,11 @@
 package com.example.iread.controller;
 
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.widget.Adapter;
 
 import com.example.iread.Adapters.AcceptDefiAdapter;
@@ -30,6 +32,8 @@ public class AccepteDefi2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accepte_defi2);
         setupRecyleView();
+        configureToolbar();
+
     }
     //
     private void setupRecyleView() {
@@ -56,7 +60,16 @@ public class AccepteDefi2Activity extends AppCompatActivity {
         super.onStop();
         Adapter.stopListening();
     }
-
+    private void configureToolbar(){
+        //Get the toolbar (Serialise)
+        Toolbar toolbar = (Toolbar) findViewById(R.id.acceptdefi2_activity_toolbar);
+        //Set the toolbar
+        setSupportActionBar(toolbar);
+        // Get a support ActionBar corresponding to this toolbar
+        ActionBar ab = getSupportActionBar();
+        // Enable the Up button
+        ab.setDisplayHomeAsUpEnabled(true);
+    }
 
 }
 
