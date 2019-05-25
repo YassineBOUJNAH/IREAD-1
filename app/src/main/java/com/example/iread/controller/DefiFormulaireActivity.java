@@ -80,7 +80,7 @@ public class DefiFormulaireActivity extends BaseActivity {
         Intent i = getIntent();
         int quiz = i.getIntExtra("Quiz",2);
         int time = i.getIntExtra("time",3);
-        String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        final String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         //for (String j : FriendData.values()){ friendsChallenge challgdoc = new friendsChallenge(j, userid, quiz,time);friendChallenge.add(challgdoc); }
         for(Map.Entry m:FriendData.entrySet()){
                 //System.out.println(m.getKey()+" "+m.getValue());
@@ -88,7 +88,7 @@ public class DefiFormulaireActivity extends BaseActivity {
             friendChallenge.document().set(challgdoc).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
-                    Toast.makeText(getApplicationContext(),"Data added",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Data added"+" idResever : "+ userid,Toast.LENGTH_SHORT).show();
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -125,11 +125,12 @@ public class DefiFormulaireActivity extends BaseActivity {
         adapter.setOnfriendClickListener(new FiendDefiAdapter.OnFriendClickListener() {
             @Override
             public void onFriendClick(DocumentSnapshot documentSnapshot, int position) {
-                String friend = documentSnapshot.toObject(friends.class).getfriend();
+                friends friend = documentSnapshot.toObject(friends.class);
                 String id = documentSnapshot.getId();
+                String friendid = friend.getfriend();
                 Toast.makeText(getApplicationContext(),"position : "+position+" id : "+id,Toast.LENGTH_SHORT).show();
-                if (!FriendData.containsValue(id)){
-                    FriendData.put(Nbrfriends,id);
+                if (!FriendData.containsValue(friendid)){
+                    FriendData.put(Nbrfriends,friendid);
                     Nbrfriends++;
                 }
 
