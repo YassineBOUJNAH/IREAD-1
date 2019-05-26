@@ -85,7 +85,7 @@ public class DefiFormulaireActivity extends BaseActivity {
         }
 
         DefiAccepted defiAccepted = new DefiAccepted(userid,quiz,dd,0);
-        Defi.document().set(defiAccepted);
+        Defi.document(userid+quiz).set(defiAccepted);
 
         startActivity(new Intent(getApplicationContext(), HomeActivity.class));
         finish();

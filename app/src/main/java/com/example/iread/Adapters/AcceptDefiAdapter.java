@@ -15,12 +15,17 @@ import com.example.iread.api.UserHelper;
 import com.example.iread.model.BookQuiz;
 import com.example.iread.model.friendsChallenge;
 import com.example.iread.model.User;
+import com.example.iread.model.friendsDefi;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Collection;
+import java.util.Map;
 
 public class AcceptDefiAdapter extends FirestoreRecyclerAdapter<friendsChallenge, AcceptDefiAdapter.AccptDefiHolder> {
 
@@ -29,7 +34,7 @@ public class AcceptDefiAdapter extends FirestoreRecyclerAdapter<friendsChallenge
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull final AccptDefiHolder holder, final int position, @NonNull friendsChallenge model) {
+    protected void onBindViewHolder(@NonNull final AccptDefiHolder holder, final int position, @NonNull final friendsChallenge model) {
         DocumentReference colBook = FirebaseFirestore.getInstance().collection("Books").document(String.valueOf(model.getLivre2()));
         colBook.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
@@ -56,6 +61,22 @@ public class AcceptDefiAdapter extends FirestoreRecyclerAdapter<friendsChallenge
             }
         });
         holder.Bookdure.setText("Duree : "+String.valueOf(model.getDateFin()));
+
+        holder.Accept.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                friendsDefi friendsdefi = new friendsDefi(model.getUiResever(),0);
+                CollectionReference defi = FirebaseFirestore.getInstance().collection("Defi").document(model.getUiSender2()+String.valueOf(model.getLivre2())).collection("Friends");
+                defi.add(friendsdefi).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        deleteItem(holder.getAdapterPosition());
+                    }
+                });
+            }
+        });
+
+
     }
 
     private void deleteItem(int position) {
@@ -75,6 +96,7 @@ public class AcceptDefiAdapter extends FirestoreRecyclerAdapter<friendsChallenge
         TextView Bookdure;
         ImageView Bookimg;
         Button Refus;
+        Button Accept;
 
         public AccptDefiHolder(View view) {
             super(view);
@@ -83,6 +105,7 @@ public class AcceptDefiAdapter extends FirestoreRecyclerAdapter<friendsChallenge
             Bookimg = view.findViewById(R.id.acceptdefi2_activity_img);
             Refus = view.findViewById(R.id.acceptdefi2_activity_refus);
             Bookdure =view.findViewById(R.id.acceptdefi2_activity_duree);
+            Accept = view.findViewById(R.id.acceptdefi2_activity_accepte);
         }
     }
 
