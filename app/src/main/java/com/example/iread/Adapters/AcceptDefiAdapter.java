@@ -35,7 +35,7 @@ public class AcceptDefiAdapter extends FirestoreRecyclerAdapter<friendsChallenge
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 BookQuiz bookQuiz = documentSnapshot.toObject(BookQuiz.class);
-                holder.Bookname.setText(bookQuiz.getName());
+                holder.Bookname.setText("''"+bookQuiz.getName()+"''");
                 if(bookQuiz.getImage() != null)
                     Glide.with(holder.itemView.getContext())
                             .load(bookQuiz.getImage())

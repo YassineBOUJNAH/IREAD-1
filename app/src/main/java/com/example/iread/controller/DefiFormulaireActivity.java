@@ -7,6 +7,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -17,6 +18,7 @@ import com.example.iread.R;
 import com.example.iread.api.UserHelper;
 import com.example.iread.auth.HomeActivity;
 import com.example.iread.base.BaseActivity;
+import com.example.iread.model.DefiAccepted;
 import com.example.iread.model.friends;
 import com.example.iread.model.friendsChallenge;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -35,10 +37,8 @@ import java.util.Map;
 public class DefiFormulaireActivity extends BaseActivity {
 
     private CollectionReference friendRef = UserHelper.getUsersCollection().document(getCurrentUser().getUid()).collection("friends");
-    //private CollectionReference friendChallenge = UserHelper.getUsersCollection().document(getCurrentUser().getUid()).collection("Defi");
     private CollectionReference friendChallenge =  FirebaseFirestore.getInstance().collection("DefiRequest");
-    private String docid;
-
+    private CollectionReference Defi =FirebaseFirestore.getInstance().collection("Defi");
     private FiendDefiAdapter adapter;
 
     public Map<Integer,String> FriendData = new HashMap<Integer,String>();
@@ -47,11 +47,8 @@ public class DefiFormulaireActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_defi_formulaire);
         configureToolbar();
         setUpRecyclerView();
-        //id checkbox :friend_defi_item_checkbox
-        //save bar :friends_defi_toolbar
 
 
 
@@ -80,18 +77,11 @@ public class DefiFormulaireActivity extends BaseActivity {
         Intent i = getIntent();
         int quiz = i.getIntExtra("Quiz",2);
         Date dd =new Date(i.getStringExtra("date"));
-        //Toast.makeText(getApplicationContext(),"Date : "+ dd,(int)20).show();
         final String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        //for (String j : FriendData.values()){ friendsChallenge challgdoc = new friendsChallenge(j, userid, quiz,time);friendChallenge.add(challgdoc); }
+
         for(Map.Entry m:FriendData.entrySet()){
-                //System.out.println(m.getKey()+" "+m.getValue());
             friendsChallenge challgdoc = new friendsChallenge(String.valueOf(m.getValue()), userid, quiz, dd);
-            friendChallenge.document().set(challgdoc).addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    //Toast.makeText(getApplicationContext(),"Data added"+" idResever : "+ userid,Toast.LENGTH_SHORT).show();
-                }
-            }).addOnFailureListener(new OnFailureListener() {
+            friendChallenge.document().set(challgdoc).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
                     Toast.makeText(getApplicationContext(),"Error "+ e.getMessage().toString(), Toast.LENGTH_SHORT).show();
@@ -99,7 +89,8 @@ public class DefiFormulaireActivity extends BaseActivity {
             });
         }
 
-
+        DefiAccepted defiAccepted = new DefiAccepted(userid,quiz,dd,0);
+        Defi.document().set(defiAccepted);
         startActivity(new Intent(getApplicationContext(), HomeActivity.class));
         finish();
     }
@@ -127,9 +118,7 @@ public class DefiFormulaireActivity extends BaseActivity {
             @Override
             public void onFriendClick(DocumentSnapshot documentSnapshot, int position) {
                 friends friend = documentSnapshot.toObject(friends.class);
-                String id = documentSnapshot.getId();
                 String friendid = friend.getfriend();
-                Toast.makeText(getApplicationContext(),"position : "+position+" id : "+id,Toast.LENGTH_SHORT).show();
                 if (!FriendData.containsValue(friendid)){
                     FriendData.put(Nbrfriends,friendid);
                     Nbrfriends++;

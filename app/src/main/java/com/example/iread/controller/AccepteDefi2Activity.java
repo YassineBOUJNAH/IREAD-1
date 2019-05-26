@@ -37,7 +37,7 @@ public class AccepteDefi2Activity extends AppCompatActivity {
     }
     //.orderBy("dateFin", Query.Direction.DESCENDING)
     private void setupRecyleView() {
-        Query query = col.whereEqualTo("uiResever",FirebaseAuth.getInstance().getCurrentUser().getUid()).orderBy("dateFin");
+        Query query = col.whereEqualTo("uiResever",FirebaseAuth.getInstance().getCurrentUser().getUid());
         FirestoreRecyclerOptions<friendsChallenge> options = new FirestoreRecyclerOptions.Builder<friendsChallenge>()
                 .setQuery(query, friendsChallenge.class)
                 .build();

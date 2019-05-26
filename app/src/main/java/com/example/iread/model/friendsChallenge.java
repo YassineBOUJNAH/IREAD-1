@@ -3,10 +3,10 @@ package com.example.iread.model;
 import java.util.Date;
 
 public class friendsChallenge {
-    private int Livre;
-    private String uiResever;
-    private String uiSender;
-    private Date DateFin;
+    protected int Livre;
+    protected String uiResever;
+    protected String uiSender;
+    protected Date DateFin;
 
     public friendsChallenge(){}
     public friendsChallenge(String uiResever, String uiSender, int livre, Date DateFin) {
