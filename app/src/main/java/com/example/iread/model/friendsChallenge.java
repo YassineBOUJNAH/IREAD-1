@@ -8,6 +8,7 @@ public class friendsChallenge{
     private String uiSender2;
     private Date DateFin;
 
+    public  friendsChallenge(){}
     public friendsChallenge(int livre2, String uiResever, String uiSender2, Date dateFin) {
         Livre2 = livre2;
         this.uiResever = uiResever;
