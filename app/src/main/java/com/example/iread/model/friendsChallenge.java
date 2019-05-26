@@ -2,28 +2,26 @@ package com.example.iread.model;
 
 import java.util.Date;
 
-public class friendsChallenge {
-    protected int Livre;
-    protected String uiResever;
-    protected String uiSender;
-    protected Date DateFin;
+public class friendsChallenge{
+    private int Livre2;
+    private String uiResever;
+    private String uiSender2;
+    private Date DateFin;
 
-    public friendsChallenge(){}
-    public friendsChallenge(String uiResever, String uiSender, int livre, Date DateFin) {
+    public friendsChallenge(int livre2, String uiResever, String uiSender2, Date dateFin) {
+        Livre2 = livre2;
         this.uiResever = uiResever;
-        this.uiSender = uiSender;
-        Livre = livre;
-        this.DateFin = DateFin;
+        this.uiSender2 = uiSender2;
+        DateFin = dateFin;
     }
 
-    public int getLivre() {
-        return Livre;
+    public int getLivre2() {
+        return Livre2;
     }
 
-    public void setLivre(int livre) {
-        Livre = livre;
+    public void setLivre2(int livre2) {
+        Livre2 = livre2;
     }
-
 
     public String getUiResever() {
         return uiResever;
@@ -33,19 +31,19 @@ public class friendsChallenge {
         this.uiResever = uiResever;
     }
 
-    public String getUiSender() {
-        return uiSender;
+    public String getUiSender2() {
+        return uiSender2;
     }
 
-    public void setUiSender(String uiSender) {
-        this.uiSender = uiSender;
+    public void setUiSender2(String uiSender2) {
+        this.uiSender2 = uiSender2;
     }
 
     public Date getDateFin() {
         return DateFin;
     }
 
-    public void setDateFin(Date DateFin) {
-        this.DateFin = DateFin;
+    public void setDateFin(Date dateFin) {
+        DateFin = dateFin;
     }
 }

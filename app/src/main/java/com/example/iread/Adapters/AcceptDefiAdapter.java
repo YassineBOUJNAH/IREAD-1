@@ -30,7 +30,7 @@ public class AcceptDefiAdapter extends FirestoreRecyclerAdapter<friendsChallenge
 
     @Override
     protected void onBindViewHolder(@NonNull final AccptDefiHolder holder, final int position, @NonNull friendsChallenge model) {
-        DocumentReference colBook = FirebaseFirestore.getInstance().collection("Books").document(String.valueOf(model.getLivre()));
+        DocumentReference colBook = FirebaseFirestore.getInstance().collection("Books").document(String.valueOf(model.getLivre2()));
         colBook.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -42,7 +42,7 @@ public class AcceptDefiAdapter extends FirestoreRecyclerAdapter<friendsChallenge
                             .into(holder.Bookimg);
             }
         });
-        UserHelper.getUsersCollection().document(model.getUiSender()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+        UserHelper.getUsersCollection().document(model.getUiSender2()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 User user = documentSnapshot.toObject(User.class);

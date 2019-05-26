@@ -38,7 +38,7 @@ public class DefiFormulaireActivity extends BaseActivity {
 
     private CollectionReference friendRef = UserHelper.getUsersCollection().document(getCurrentUser().getUid()).collection("friends");
     private CollectionReference friendChallenge =  FirebaseFirestore.getInstance().collection("DefiRequest");
-    private CollectionReference Defi =FirebaseFirestore.getInstance().collection("Defi");
+    private CollectionReference Defi    =             FirebaseFirestore.getInstance().collection("Defi");
     private FiendDefiAdapter adapter;
 
     public Map<Integer,String> FriendData = new HashMap<Integer,String>();
@@ -80,17 +80,13 @@ public class DefiFormulaireActivity extends BaseActivity {
         final String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         for(Map.Entry m:FriendData.entrySet()){
-            friendsChallenge challgdoc = new friendsChallenge(String.valueOf(m.getValue()), userid, quiz, dd);
-            friendChallenge.document().set(challgdoc).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(getApplicationContext(),"Error "+ e.getMessage().toString(), Toast.LENGTH_SHORT).show();
-                }
-            });
+            friendsChallenge challgdoc = new friendsChallenge(quiz,String.valueOf(m.getValue()), userid, dd);
+            friendChallenge.document().set(challgdoc);
         }
 
         DefiAccepted defiAccepted = new DefiAccepted(userid,quiz,dd,0);
         Defi.document().set(defiAccepted);
+
         startActivity(new Intent(getApplicationContext(), HomeActivity.class));
         finish();
     }
