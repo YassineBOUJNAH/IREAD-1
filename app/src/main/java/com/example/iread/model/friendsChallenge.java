@@ -1,17 +1,19 @@
 package com.example.iread.model;
 
+import java.util.Date;
+
 public class friendsChallenge {
-    private int DateFin;
     private int Livre;
     private String uiResever;
     private String uiSender;
+    private Date DateFin;
 
     public friendsChallenge(){}
-    public friendsChallenge( String uiResever, String uiSender, int livre, int dateFin) {
+    public friendsChallenge(String uiResever, String uiSender, int livre, Date DateFin) {
         this.uiResever = uiResever;
         this.uiSender = uiSender;
         Livre = livre;
-        DateFin = dateFin;
+        this.DateFin = DateFin;
     }
 
     public int getLivre() {
@@ -22,13 +24,6 @@ public class friendsChallenge {
         Livre = livre;
     }
 
-    public int getDateFin() {
-        return DateFin;
-    }
-
-    public void setDateFin(int dateFin) {
-        DateFin = dateFin;
-    }
 
     public String getUiResever() {
         return uiResever;
@@ -44,5 +39,13 @@ public class friendsChallenge {
 
     public void setUiSender(String uiSender) {
         this.uiSender = uiSender;
+    }
+
+    public Date getDateFin() {
+        return DateFin;
+    }
+
+    public void setDateFin(Date DateFin) {
+        this.DateFin = DateFin;
     }
 }

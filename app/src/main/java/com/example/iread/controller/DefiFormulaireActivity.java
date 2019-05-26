@@ -24,11 +24,11 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -79,21 +79,22 @@ public class DefiFormulaireActivity extends BaseActivity {
     private void save() {
         Intent i = getIntent();
         int quiz = i.getIntExtra("Quiz",2);
-        int time = i.getIntExtra("time",3);
+        Date dd =new Date(i.getStringExtra("date"));
+        //Toast.makeText(getApplicationContext(),"Date : "+ dd,(int)20).show();
         final String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         //for (String j : FriendData.values()){ friendsChallenge challgdoc = new friendsChallenge(j, userid, quiz,time);friendChallenge.add(challgdoc); }
         for(Map.Entry m:FriendData.entrySet()){
                 //System.out.println(m.getKey()+" "+m.getValue());
-            friendsChallenge challgdoc = new friendsChallenge(String.valueOf(m.getValue()), userid, quiz,time);
+            friendsChallenge challgdoc = new friendsChallenge(String.valueOf(m.getValue()), userid, quiz, dd);
             friendChallenge.document().set(challgdoc).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
-                    Toast.makeText(getApplicationContext(),"Data added"+" idResever : "+ userid,Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(),"Data added"+" idResever : "+ userid,Toast.LENGTH_SHORT).show();
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(getApplicationContext(),"Error "+ e.getMessage().toString(),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Error "+ e.getMessage().toString(), Toast.LENGTH_SHORT).show();
                 }
             });
         }

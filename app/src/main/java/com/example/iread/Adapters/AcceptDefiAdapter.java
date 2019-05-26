@@ -55,7 +55,7 @@ public class AcceptDefiAdapter extends FirestoreRecyclerAdapter<friendsChallenge
                 deleteItem(holder.getAdapterPosition());
             }
         });
-        holder.Bookdure.setText("Duree : "+String.valueOf(model.getDateFin())+" jours");
+        holder.Bookdure.setText("Duree : "+String.valueOf(model.getDateFin()));
     }
 
     private void deleteItem(int position) {
