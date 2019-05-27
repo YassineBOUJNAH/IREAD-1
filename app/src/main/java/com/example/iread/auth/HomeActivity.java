@@ -8,6 +8,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
+
 import com.example.iread.Adapters.PageAdapter;
 import com.example.iread.Fragment.BlankFragment;
 import com.example.iread.Fragment.NewsPageFragment;
@@ -27,6 +29,8 @@ import com.example.iread.controller.invitation;
 import com.example.iread.options.SettingActivity;
 
 import static com.example.iread.Fragment.NewsPageFragment.btn1;
+import static com.example.iread.Fragment.NewsPageFragment.btn2;
+import static com.example.iread.Fragment.NewsPageFragment.btn3;
 
 public class HomeActivity extends BaseActivity implements NewsPageFragment.OnQuizClickListener, BlankFragment.OnFriendClicklistener {
 
@@ -153,16 +157,38 @@ public class HomeActivity extends BaseActivity implements NewsPageFragment.OnQui
 
     @Override
     public void OnStart2Click(View view){
-        Intent myint = new Intent(this, DefinTimeAndFieandsActivity.class);
-        myint.putExtra("Quiz",2);
-        startActivity(myint);
-        //Intent myint = new Intent(this,QuizActivity.class);
-        //.putExtra("child",String.valueOf(2));
-       // startActivity(myint);
+        //Toast.makeText(getApplicationContext(),"btn2 : "+btn2.getText(),Toast.LENGTH_LONG).show();
+        if (btn2.getText().equals("lancer")) {
+            Intent myint = new Intent(this, DefinTimeAndFieandsActivity.class);
+            myint.putExtra("Quiz", 2);
+            startActivity(myint);
+        }else {
+            Intent myint = new Intent(this, QuizActivity.class);
+            myint.putExtra("child", String.valueOf(1));
+            startActivity(myint);
+        }
     }
 
     @Override
     public void OnStart3Click(View view){
+        if (btn3.getText().equals("lancer")) {
+            Intent myint = new Intent(this, DefinTimeAndFieandsActivity.class);
+            myint.putExtra("Quiz", 3);
+            startActivity(myint);
+        }else {
+            Intent myint = new Intent(this, QuizActivity.class);
+            myint.putExtra("child", String.valueOf(3));
+            startActivity(myint);
+        }
+    }
+    @Override
+    public void OnStart4Click(View view){
+        Intent myint = new Intent(this,QuizActivity.class);
+        myint.putExtra("child",String.valueOf(3));
+        startActivity(myint);
+    }
+    @Override
+    public void OnStart5Click(View view){
         Intent myint = new Intent(this,QuizActivity.class);
         myint.putExtra("child",String.valueOf(3));
         startActivity(myint);
@@ -181,6 +207,18 @@ public class HomeActivity extends BaseActivity implements NewsPageFragment.OnQui
     }
     @Override
     public void OnLire3Click(View view){
+        Intent myint = new Intent(this,LivreActivity.class);
+        myint.putExtra("child","3.pdf");
+        startActivity(myint);
+    }
+    @Override
+    public void OnLire4Click(View view){
+        Intent myint = new Intent(this,LivreActivity.class);
+        myint.putExtra("child","3.pdf");
+        startActivity(myint);
+    }
+    @Override
+    public void OnLire5Click(View view){
         Intent myint = new Intent(this,LivreActivity.class);
         myint.putExtra("child","3.pdf");
         startActivity(myint);

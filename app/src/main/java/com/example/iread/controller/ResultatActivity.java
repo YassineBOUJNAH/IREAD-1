@@ -40,3 +40,26 @@ public class ResultatActivity extends AppCompatActivity {
         });
     }
 }
+/*
+ defi.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot documentSnapshots) {
+                for (DocumentSnapshot documentSnapshot : documentSnapshots){
+                    final DefiAccepted defiAccepted =documentSnapshot.toObject(DefiAccepted.class);
+                    if (defiAccepted.getUiSender() == userid)
+                    {
+                         correct = defiAccepted.getNote();
+                    }else {
+                        defi.document(documentSnapshot.getId()).collection("Friends").document(userid).get()
+                                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                    @Override
+                                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                        correct = Integer.parseInt(documentSnapshot.getString("note"));
+                                    }
+                                });
+                    }
+                }
+            }
+        });
+
+ */

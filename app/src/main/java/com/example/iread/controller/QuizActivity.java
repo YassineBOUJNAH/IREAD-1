@@ -1,17 +1,24 @@
 package com.example.iread.controller;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.example.iread.model.DefiAccepted;
 import com.example.iread.model.Quiz;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -21,9 +28,20 @@ import com.example.iread.controller.ResultatActivity;
 
 
 import com.example.iread.R;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import static com.example.iread.Fragment.NewsPageFragment.btn1;
+import static com.example.iread.Fragment.NewsPageFragment.btn2;
+import static com.example.iread.Fragment.NewsPageFragment.btn3;
+import static com.example.iread.Fragment.NewsPageFragment.btn4;
+import static com.example.iread.Fragment.NewsPageFragment.btn5;
+
 
 public class QuizActivity extends AppCompatActivity {
-    private Button btn1,btn2,btn3,btn4;
+    private Button btn11,btn22,btn33,btn44;
     private TextView quest,time;
     private  int correct=0;
     private  int wrong=0;
@@ -32,14 +50,20 @@ public class QuizActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     DatabaseReference reference;
     String childe;
+    private CollectionReference defi = FirebaseFirestore.getInstance().collection("Defi");
+    private String userid= FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+
+
+    private CountDownTimer countDownTimer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
-        btn1 = findViewById(R.id.qiuz1_btn1);
-        btn2 = findViewById(R.id.qiuz1_btn2);
-        btn3 = findViewById(R.id.qiuz1_btn3);
-        btn4 = findViewById(R.id.qiuz1_btn4);
+        btn11 = findViewById(R.id.qiuz1_btn1);
+        btn22 = findViewById(R.id.qiuz1_btn2);
+        btn33 = findViewById(R.id.qiuz1_btn3);
+        btn44 = findViewById(R.id.qiuz1_btn4);
         progressBar = findViewById(R.id.quiz1_progress);
         time = findViewById(R.id.timeTxt);
         quest =findViewById(R.id.qiuz1_qst1);
@@ -51,15 +75,23 @@ public class QuizActivity extends AppCompatActivity {
             public void run() {
                 progressBar.setVisibility(View.INVISIBLE);
             }
-        },3000);
+        },2000);
         UpdateQuiz();
         Countdown(45,time);
+
+
+
+
+
+
+
     }
 
     private void UpdateQuiz() {
         if (total > 10){
             if (save == 0) {
                 save++;
+                countDownTimer.cancel();
                 SaveInfo();
             }
         }else{
@@ -69,44 +101,44 @@ public class QuizActivity extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     final Quiz question = dataSnapshot.getValue(Quiz.class);
                     quest.setText(question.getQuestion());
-                    btn1.setText(question.getOpt1());
-                    btn2.setText(question.getOpt2());
-                    btn3.setText(question.getOpt3());
-                    btn4.setText(question.getOpt4());
+                    btn11.setText(question.getOpt1());
+                    btn22.setText(question.getOpt2());
+                    btn33.setText(question.getOpt3());
+                    btn44.setText(question.getOpt4());
 
 
-                    btn1.setOnClickListener(new View.OnClickListener() {
+                    btn11.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            if (btn1.getText().toString().equals(question.getAnswer())) {
-                                btn1.setBackgroundColor(Color.GREEN);
+                            if (btn11.getText().toString().equals(question.getAnswer())) {
+                                btn11.setBackgroundColor(Color.GREEN);
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
                                         correct++;
-                                        btn1.setBackgroundColor(Color.parseColor("#03A9F4"));
+                                        btn11.setBackgroundColor(Color.parseColor("#03A9F4"));
                                         UpdateQuiz();
                                     }
                                 }, 1500);
                             } else {
                                 wrong++;
-                                btn1.setBackgroundColor(Color.RED);
-                                if (btn2.getText().toString().equals(question.getAnswer())) {
-                                    btn2.setBackgroundColor(Color.GREEN);
-                                }else if (btn3.getText().toString().equals(question.getAnswer())) {
-                                    btn3.setBackgroundColor(Color.GREEN);
-                                } else if (btn4.getText().toString().equals(question.getAnswer())) {
-                                    btn4.setBackgroundColor(Color.GREEN);
+                                btn11.setBackgroundColor(Color.RED);
+                                if (btn22.getText().toString().equals(question.getAnswer())) {
+                                    btn22.setBackgroundColor(Color.GREEN);
+                                }else if (btn33.getText().toString().equals(question.getAnswer())) {
+                                    btn33.setBackgroundColor(Color.GREEN);
+                                } else if (btn44.getText().toString().equals(question.getAnswer())) {
+                                    btn44.setBackgroundColor(Color.GREEN);
                                 }
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
-                                        btn1.setBackgroundColor(Color.parseColor("#03A9F4"));
-                                        btn2.setBackgroundColor(Color.parseColor("#03A9F4"));
-                                        btn3.setBackgroundColor(Color.parseColor("#03A9F4"));
-                                        btn4.setBackgroundColor(Color.parseColor("#03A9F4"));
+                                        btn11.setBackgroundColor(Color.parseColor("#03A9F4"));
+                                        btn22.setBackgroundColor(Color.parseColor("#03A9F4"));
+                                        btn33.setBackgroundColor(Color.parseColor("#03A9F4"));
+                                        btn44.setBackgroundColor(Color.parseColor("#03A9F4"));
                                         UpdateQuiz();
                                     }
                                 },1500);
@@ -120,40 +152,40 @@ public class QuizActivity extends AppCompatActivity {
 
 
 
-                    ///////////////////////////////     BTN2
-                    btn2.setOnClickListener(new View.OnClickListener() {
+                    ///////////////////////////////     btn22
+                    btn22.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
 
-                            if (btn2.getText().toString().equals(question.getAnswer())) {
-                                btn2.setBackgroundColor(Color.GREEN);
+                            if (btn22.getText().toString().equals(question.getAnswer())) {
+                                btn22.setBackgroundColor(Color.GREEN);
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
                                         correct++;
-                                        btn2.setBackgroundColor(Color.parseColor("#03A9F4"));
+                                        btn22.setBackgroundColor(Color.parseColor("#03A9F4"));
                                         UpdateQuiz();
                                     }
                                 }, 1500);
                             } else {
                                 wrong++;
-                                btn2.setBackgroundColor(Color.RED);
-                                if (btn1.getText().toString().equals(question.getAnswer())) {
-                                    btn1.setBackgroundColor(Color.GREEN);
-                                }else if (btn3.getText().toString().equals(question.getAnswer())) {
-                                    btn3.setBackgroundColor(Color.GREEN);
-                                } else if (btn4.getText().toString().equals(question.getAnswer())) {
-                                    btn4.setBackgroundColor(Color.GREEN);
+                                btn22.setBackgroundColor(Color.RED);
+                                if (btn11.getText().toString().equals(question.getAnswer())) {
+                                    btn11.setBackgroundColor(Color.GREEN);
+                                }else if (btn33.getText().toString().equals(question.getAnswer())) {
+                                    btn33.setBackgroundColor(Color.GREEN);
+                                } else if (btn44.getText().toString().equals(question.getAnswer())) {
+                                    btn44.setBackgroundColor(Color.GREEN);
                                 }
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
-                                        btn1.setBackgroundColor(Color.parseColor("#03A9F4"));
-                                        btn2.setBackgroundColor(Color.parseColor("#03A9F4"));
-                                        btn3.setBackgroundColor(Color.parseColor("#03A9F4"));
-                                        btn4.setBackgroundColor(Color.parseColor("#03A9F4"));
+                                        btn11.setBackgroundColor(Color.parseColor("#03A9F4"));
+                                        btn22.setBackgroundColor(Color.parseColor("#03A9F4"));
+                                        btn33.setBackgroundColor(Color.parseColor("#03A9F4"));
+                                        btn44.setBackgroundColor(Color.parseColor("#03A9F4"));
                                         UpdateQuiz();
                                     }
                                 },1500);
@@ -176,39 +208,39 @@ public class QuizActivity extends AppCompatActivity {
 
 
                     ////////////////////////////////BTN 3
-                    btn3.setOnClickListener(new View.OnClickListener() {
+                    btn33.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
 
-                            if (btn3.getText().toString().equals(question.getAnswer())) {
-                                btn3.setBackgroundColor(Color.GREEN);
+                            if (btn33.getText().toString().equals(question.getAnswer())) {
+                                btn33.setBackgroundColor(Color.GREEN);
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
                                         correct++;
-                                        btn3.setBackgroundColor(Color.parseColor("#03A9F4"));
+                                        btn33.setBackgroundColor(Color.parseColor("#03A9F4"));
                                         UpdateQuiz();
                                     }
                                 }, 1500);
                             } else {
                                 wrong++;
-                                btn3.setBackgroundColor(Color.RED);
-                                if (btn2.getText().toString().equals(question.getAnswer())) {
-                                    btn2.setBackgroundColor(Color.GREEN);
-                                }else if (btn1.getText().toString().equals(question.getAnswer())) {
-                                    btn1.setBackgroundColor(Color.GREEN);
-                                } else if (btn4.getText().toString().equals(question.getAnswer())) {
-                                    btn4.setBackgroundColor(Color.GREEN);
+                                btn33.setBackgroundColor(Color.RED);
+                                if (btn22.getText().toString().equals(question.getAnswer())) {
+                                    btn22.setBackgroundColor(Color.GREEN);
+                                }else if (btn11.getText().toString().equals(question.getAnswer())) {
+                                    btn11.setBackgroundColor(Color.GREEN);
+                                } else if (btn44.getText().toString().equals(question.getAnswer())) {
+                                    btn44.setBackgroundColor(Color.GREEN);
                                 }
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
-                                        btn1.setBackgroundColor(Color.parseColor("#03A9F4"));
-                                        btn2.setBackgroundColor(Color.parseColor("#03A9F4"));
-                                        btn3.setBackgroundColor(Color.parseColor("#03A9F4"));
-                                        btn4.setBackgroundColor(Color.parseColor("#03A9F4"));
+                                        btn11.setBackgroundColor(Color.parseColor("#03A9F4"));
+                                        btn22.setBackgroundColor(Color.parseColor("#03A9F4"));
+                                        btn33.setBackgroundColor(Color.parseColor("#03A9F4"));
+                                        btn44.setBackgroundColor(Color.parseColor("#03A9F4"));
                                         UpdateQuiz();
                                     }
                                 },1500);
@@ -220,40 +252,40 @@ public class QuizActivity extends AppCompatActivity {
 
 
 
-                    ///////////////////////////             BTN4
-                    btn4.setOnClickListener(new View.OnClickListener() {
+                    ///////////////////////////             btn44
+                    btn44.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
 
-                            if (btn4.getText().toString().equals(question.getAnswer())) {
-                                btn4.setBackgroundColor(Color.GREEN);
+                            if (btn44.getText().toString().equals(question.getAnswer())) {
+                                btn44.setBackgroundColor(Color.GREEN);
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
                                         correct++;
-                                        btn4.setBackgroundColor(Color.parseColor("#03A9F4"));
+                                        btn44.setBackgroundColor(Color.parseColor("#03A9F4"));
                                         UpdateQuiz();
                                     }
                                 }, 1500);
                             } else {
                                 wrong++;
-                                btn4.setBackgroundColor(Color.RED);
-                                if (btn2.getText().toString().equals(question.getAnswer())) {
-                                    btn2.setBackgroundColor(Color.GREEN);
-                                }else if (btn3.getText().toString().equals(question.getAnswer())) {
-                                    btn3.setBackgroundColor(Color.GREEN);
-                                } else if (btn1.getText().toString().equals(question.getAnswer())) {
-                                    btn1.setBackgroundColor(Color.GREEN);
+                                btn44.setBackgroundColor(Color.RED);
+                                if (btn22.getText().toString().equals(question.getAnswer())) {
+                                    btn22.setBackgroundColor(Color.GREEN);
+                                }else if (btn33.getText().toString().equals(question.getAnswer())) {
+                                    btn33.setBackgroundColor(Color.GREEN);
+                                } else if (btn11.getText().toString().equals(question.getAnswer())) {
+                                    btn11.setBackgroundColor(Color.GREEN);
                                 }
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
-                                        btn1.setBackgroundColor(Color.parseColor("#03A9F4"));
-                                        btn2.setBackgroundColor(Color.parseColor("#03A9F4"));
-                                        btn3.setBackgroundColor(Color.parseColor("#03A9F4"));
-                                        btn4.setBackgroundColor(Color.parseColor("#03A9F4"));
+                                        btn11.setBackgroundColor(Color.parseColor("#03A9F4"));
+                                        btn22.setBackgroundColor(Color.parseColor("#03A9F4"));
+                                        btn33.setBackgroundColor(Color.parseColor("#03A9F4"));
+                                        btn44.setBackgroundColor(Color.parseColor("#03A9F4"));
                                         UpdateQuiz();
                                     }
                                 },1500);
@@ -275,7 +307,7 @@ public class QuizActivity extends AppCompatActivity {
 
     }
     public void Countdown(int sec, final TextView tv){
-        new CountDownTimer(sec * 1000+1000,1000){
+        countDownTimer = new CountDownTimer(sec * 1000+1000,1000){
             public void onTick(long millisUntilFinished) {
                 int seconds = (int)(millisUntilFinished / 1000);
                 int minutes = seconds / 60;
@@ -293,13 +325,72 @@ public class QuizActivity extends AppCompatActivity {
         }.start();
     }
     public void SaveInfo(){
+        defi.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot documentSnapshots) {
+                for (DocumentSnapshot documentSnapshot : documentSnapshots){
+                    final DefiAccepted defiAccepted =documentSnapshot.toObject(DefiAccepted.class);
+                    if (defiAccepted.getUiSender() == userid)
+                    {
+                        defi.document(documentSnapshot.getId()).update("note",correct);
+                        Log.d("key 1998",documentSnapshot.getId());
+                    }else {
+                        defi.document(documentSnapshot.getId()).collection("Friends").document(userid).update("note",correct);
+                        defi.document(documentSnapshot.getId()).collection("Friends").document(userid).get()
+                                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                    @Override
+                                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                        switch (defiAccepted.getLivre()) {
+                                            case 1:
+                                                btn1.setText("Resulta");
+                                                break;
+                                            case 2:
+                                                btn2.setText("Resulta");
+                                                break;
+                                            case 3:
+                                                btn3.setText("Resulta");
+                                                break;
+                                            case 4:
+                                                btn4.setText("Resulta");
+                                                break;
+                                            case 5:
+                                                btn5.setText("Resulta");
+                                                break;
+                                        }
+                                    }
+                                });
+                    }
+                }
+            }
+        });
+
+
 
         Intent intent = new Intent(QuizActivity.this,ResultatActivity.class);
         intent.putExtra("total",String.valueOf(total-1));
         intent.putExtra("correct",String.valueOf(correct));
         intent.putExtra("incorrect",String.valueOf(wrong));
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        finish();
         startActivity(intent);
+        finish();
+
+    }
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Closing Activity")
+                .setMessage("Are you sure you want to close this activity?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        countDownTimer.cancel();
+                        finish();
+                    }
+
+                })
+                .setNegativeButton("No", null)
+                .show();
     }
 }

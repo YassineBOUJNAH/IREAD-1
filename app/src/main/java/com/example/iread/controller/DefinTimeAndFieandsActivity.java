@@ -1,8 +1,10 @@
 package com.example.iread.controller;
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -33,6 +35,8 @@ public class DefinTimeAndFieandsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_defin_time_and_fieands);
+        configureToolbar();
+
 
         start = findViewById(R.id.defin_challenge_start);
         add = findViewById(R.id.defin_challenge_add_friend);
@@ -69,6 +73,16 @@ public class DefinTimeAndFieandsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+    private void configureToolbar(){
+        //Get the toolbar (Serialise)
+        Toolbar toolbar = (Toolbar) findViewById(R.id.defin_challenge_bar);
+        //Set the toolbar
+        setSupportActionBar(toolbar);
+        // Get a support ActionBar corresponding to this toolbar
+        ActionBar ab = getSupportActionBar();
+        // Enable the Up button
+        ab.setDisplayHomeAsUpEnabled(true);
     }
 
 

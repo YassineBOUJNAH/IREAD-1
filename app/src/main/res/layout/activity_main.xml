@@ -30,13 +30,14 @@
             android:textStyle="bold"
             android:layout_margin="@dimen/default_margin"/>
 
-        <!-- DESCRIPTION FIREBASE OC -->
+        <!-- DESCRIPTION FIREBASE OC
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/default_text_size"
             android:text="@string/main_activity_description"
             android:layout_margin="@dimen/default_margin"/>
+         -->
 
         <!-- BUTTONS CONTAINER -->
         <LinearLayout

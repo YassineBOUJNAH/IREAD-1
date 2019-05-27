@@ -52,13 +52,13 @@ public class NewsPageFragment extends Fragment {
         void OnStart2Click(View view);
         void OnStart3Click(View view);
         void OnLire1Click(View view);
-        //void OnStart4Click(View view);
-        //void OnStart5Click(View view);
+        void OnStart4Click(View view);
+        void OnStart5Click(View view);
 
         void OnLire2Click(View view);
         void OnLire3Click(View view);
-        //void OnLire4Click(View view);
-        //void OnLire5Click(View view);
+        void OnLire4Click(View view);
+        void OnLire5Click(View view);
 
     }
     private NewsPageFragment.OnQuizClickListener addCalback;
@@ -187,26 +187,15 @@ public class NewsPageFragment extends Fragment {
             public void onSuccess(QuerySnapshot documentSnapshots) {
                 for (DocumentSnapshot documentSnapshot : documentSnapshots){
                     final DefiAccepted defiAccepted =documentSnapshot.toObject(DefiAccepted.class);
+                    if (documentSnapshot.getId().equals(userid+String.valueOf(defiAccepted.getLivre()))){
+                        ChangeBtn(defiAccepted.getLivre());
+                    }
                     defi.document(documentSnapshot.getId()).collection("Friends").document(userid).get()
                          .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                              @Override
-                             public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                 switch (defiAccepted.getLivre()){
-                                     case 1:
-                                         btn1.setText("Quiz");
-                                         break;
-                                     case 2:
-                                         btn2.setText("Quiz");
-                                         break;
-                                     case 3:
-                                         btn3.setText("Quiz");
-                                         break;
-                                     case 4:
-                                         btn4.setText("Quiz");
-                                         break;
-                                     case 5:
-                                         btn5.setText("Quiz");
-                                         break;
+                             public void onSuccess(DocumentSnapshot documentSnapshot2) {
+                                 if (documentSnapshot2.exists()){
+                                     ChangeBtn(defiAccepted.getLivre());
                                  }
                              }
                          });
@@ -236,6 +225,22 @@ public class NewsPageFragment extends Fragment {
                 addCalback.OnStart3Click(v);
             }
         });
+
+        result.findViewById(R.id.defi_start4).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addCalback.OnStart4Click(v);
+            }
+        });
+        result.findViewById(R.id.defi_start5).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addCalback.OnStart5Click(v);
+            }
+        });
+
+
+
         result.findViewById(R.id.defi_lire).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -254,6 +259,18 @@ public class NewsPageFragment extends Fragment {
                 addCalback.OnLire3Click(view);
             }
         });
+        result.findViewById(R.id.defi_lire4).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addCalback.OnLire4Click(view);
+            }
+        });
+        result.findViewById(R.id.defi_lire5).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addCalback.OnLire5Click(view);
+            }
+        });
 
 
         return result;
@@ -269,5 +286,25 @@ public class NewsPageFragment extends Fragment {
             addCalback = (NewsPageFragment.OnQuizClickListener) getActivity();
         } catch (ClassCastException e) {
             throw new ClassCastException(e.toString()+ " must implement OnButtonClickedListener");        }
+    }
+
+    public void ChangeBtn(int arg){
+        switch (arg){
+            case 1:
+                btn1.setText("Quiz");
+                break;
+            case 2:
+                btn2.setText("Quiz");
+                break;
+            case 3:
+                btn3.setText("Quiz");
+                break;
+            case 4:
+                btn4.setText("Quiz");
+                break;
+            case 5:
+                btn5.setText("Quiz");
+                break;
+        }
     }
 }

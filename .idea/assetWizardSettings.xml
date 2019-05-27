@@ -18,7 +18,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/content/ic_save_black_24dp.xml" />
+                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/action/ic_exit_to_app_black_24dp.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -29,7 +29,7 @@
                         <option name="values">
                           <map>
                             <entry key="opacityPercent" value="90" />
-                            <entry key="outputName" value="ic_save" />
+                            <entry key="outputName" value="ic_exit" />
                             <entry key="sourceFile" value="C:\Users\AmineAdib\Desktop\UI_UX\115760-seo-and-online-marketing-elements\svg\customer.svg" />
                           </map>
                         </option>

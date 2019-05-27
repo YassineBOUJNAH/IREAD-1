@@ -38,7 +38,8 @@
         <activity android:name=".controller.ClickedFriendActivity" />
         <activity
             android:name=".controller.EntrainActivty"
-            android:label="En train de lire" />
+            android:label="En train de lire"
+            android:parentActivityName=".auth.HomeActivity"/>
         <activity
             android:name=".controller.DejaLuActivity"
             android:label="Deja lu"
