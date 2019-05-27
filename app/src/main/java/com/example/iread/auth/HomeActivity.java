@@ -26,6 +26,8 @@ import com.example.iread.controller.friend;
 import com.example.iread.controller.invitation;
 import com.example.iread.options.SettingActivity;
 
+import static com.example.iread.Fragment.NewsPageFragment.btn1;
+
 public class HomeActivity extends BaseActivity implements NewsPageFragment.OnQuizClickListener, BlankFragment.OnFriendClicklistener {
 
 
@@ -136,10 +138,16 @@ public class HomeActivity extends BaseActivity implements NewsPageFragment.OnQui
 
     ///Quiz Frag
     @Override
-    public void OnStart1Click(View view){
+    public void OnStart1Click(View view) {
+        if (btn1.getText().equals("Lancer")) {
         Intent myint = new Intent(this, DefinTimeAndFieandsActivity.class);
-        myint.putExtra("Quiz",1);
+        myint.putExtra("Quiz", 1);
         startActivity(myint);
+        }else {
+            Intent myint = new Intent(this, QuizActivity.class);
+            myint.putExtra("child", String.valueOf(1));
+            startActivity(myint);
+        }
     }
 
 

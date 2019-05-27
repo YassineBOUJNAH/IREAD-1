@@ -24,8 +24,6 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.Collection;
-import java.util.Map;
 
 public class AcceptDefiAdapter extends FirestoreRecyclerAdapter<friendsChallenge, AcceptDefiAdapter.AccptDefiHolder> {
 
@@ -67,9 +65,9 @@ public class AcceptDefiAdapter extends FirestoreRecyclerAdapter<friendsChallenge
             public void onClick(View v) {
                 friendsDefi friendsdefi = new friendsDefi(model.getUiResever(),0);
                 CollectionReference defi = FirebaseFirestore.getInstance().collection("Defi").document(model.getUiSender2()+String.valueOf(model.getLivre2())).collection("Friends");
-                defi.add(friendsdefi).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                defi.document(model.getUiResever()).set(friendsdefi).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
-                    public void onSuccess(DocumentReference documentReference) {
+                    public void onSuccess(Void aVoid) {
                         deleteItem(holder.getAdapterPosition());
                     }
                 });
