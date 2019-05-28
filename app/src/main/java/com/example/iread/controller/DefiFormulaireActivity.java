@@ -2,17 +2,13 @@ package com.example.iread.controller;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
-
 import com.example.iread.Adapters.FiendDefiAdapter;
 import com.example.iread.R;
 import com.example.iread.api.UserHelper;
@@ -22,8 +18,6 @@ import com.example.iread.model.DefiAccepted;
 import com.example.iread.model.friends;
 import com.example.iread.model.friendsChallenge;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
