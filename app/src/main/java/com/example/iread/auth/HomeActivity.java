@@ -143,7 +143,7 @@ public class HomeActivity extends BaseActivity implements NewsPageFragment.OnQui
     ///Quiz Frag
     @Override
     public void OnStart1Click(View view) {
-        if (btn1.getText().equals("Lancer")) {
+        if (btn1.getText().equals("lancer")) {
         Intent myint = new Intent(this, DefinTimeAndFieandsActivity.class);
         myint.putExtra("Quiz", 1);
         startActivity(myint);

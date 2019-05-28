@@ -103,10 +103,10 @@
                                         />
                                     <TextView
                                         android:id="@+id/textCountDown"
-                                        android:padding="17dp"
+                                        android:padding="22dp"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="999"
+                                        android:text="99"
                                         android:textColor="#888787"
                                         android:layout_alignParentRight="true"
                                         android:layout_centerVertical="true"
@@ -217,7 +217,7 @@
                                         />
                                     <TextView
                                         android:id="@+id/textCountDown2"
-                                        android:padding="17dp"
+                                        android:padding="22dp"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="999"
@@ -333,7 +333,7 @@
                                         />
                                     <TextView
                                         android:id="@+id/textCountDown3"
-                                        android:padding="17dp"
+                                        android:padding="22dp"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="999"
@@ -447,7 +447,7 @@
                                         />
                                     <TextView
                                         android:id="@+id/textCountDown4"
-                                        android:padding="17dp"
+                                        android:padding="22dp"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="999"
@@ -563,7 +563,7 @@
                                         />
                                     <TextView
                                         android:id="@+id/textCountDown5"
-                                        android:padding="17dp"
+                                        android:padding="22dp"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="999"
@@ -678,7 +678,7 @@
                                         />
                                     <TextView
                                         android:id="@+id/textCountDown6"
-                                        android:padding="17dp"
+                                        android:padding="22dp"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:text="999"

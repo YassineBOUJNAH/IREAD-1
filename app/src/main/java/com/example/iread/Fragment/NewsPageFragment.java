@@ -229,7 +229,7 @@ public class NewsPageFragment extends Fragment {
                 for (DocumentSnapshot documentSnapshot : documentSnapshots){
                     final DefiAccepted defiAccepted =documentSnapshot.toObject(DefiAccepted.class);
                     if (documentSnapshot.getId().equals(userid+String.valueOf(defiAccepted.getLivre()))){
-                        ChangeBtn(defiAccepted.getLivre());
+                        ChangeView(defiAccepted.getLivre(),defiAccepted.getDateEnd());
 
                     }
                     defi.document(documentSnapshot.getId()).collection("Friends").document(userid).get()
@@ -237,8 +237,7 @@ public class NewsPageFragment extends Fragment {
                              @Override
                              public void onSuccess(DocumentSnapshot documentSnapshot2) {
                                  if (documentSnapshot2.exists()){
-                                     ChangeBtn(defiAccepted.getLivre());
-                                     CalcProgress(defiAccepted.getDateEnd());
+                                     ChangeView(defiAccepted.getLivre(),defiAccepted.getDateEnd());
 
                                  }
                              }
@@ -332,31 +331,7 @@ public class NewsPageFragment extends Fragment {
             throw new ClassCastException(e.toString()+ " must implement OnButtonClickedListener");        }
     }
 
-    public void ChangeBtn(int arg){
-        switch (arg){
-            case 1:
-                relativeLayout1.setVisibility(View.VISIBLE);
-                btn1.setText("Quiz");
-                break;
-            case 2:
-                relativeLayout2.setVisibility(View.VISIBLE);
-                btn2.setText("Quiz");
-                break;
-            case 3:
-                relativeLayout3.setVisibility(View.VISIBLE);
-                btn3.setText("Quiz");
-                break;
-            case 4:
-                relativeLayout4.setVisibility(View.VISIBLE);
-                btn4.setText("Quiz");
-                break;
-            case 5:
-                relativeLayout5.setVisibility(View.VISIBLE);
-                btn5.setText("Quiz");
-                break;
-        }
-    }
-    public void CalcProgress(Date arg){
+    public void ChangeView(int pos,Date arg){
         Calendar cal = Calendar.getInstance();
         cal.set(2019,cal.get(Calendar.MONTH) ,cal.get(Calendar.DAY_OF_MONTH));
         Date currentday = cal.getTime();
@@ -367,15 +342,38 @@ public class NewsPageFragment extends Fragment {
         cal.set(2019,mois-1,jour);
         Date dateFin = cal.getTime();
         long diffr = (dateFin.getTime()- currentday.getTime())/86400000;
-
-        //SimpleDateFormat tt = new SimpleDateFormat("dd/MM/YYYY");
-        //String curr = tt.format(currentday);
-        //String datend = tt.format(dateFin);
-        //Toast.makeText(getContext(),"Current : "+curr+"  "+"DateFin "+datend+"Duree "+diffr,Toast.LENGTH_LONG).show();
-
-        relativeLayout2.setVisibility(View.VISIBLE);
-        count2.setText(String.valueOf(diffr));
         int prog = (int)(diffr*100)/30;
-        prg2.setProgress(prog);
+        switch (pos){
+            case 1:
+                relativeLayout1.setVisibility(View.VISIBLE);
+                btn1.setText("Quiz");
+                count1.setText(String.valueOf(diffr));
+                prg1.setProgress(prog);
+                break;
+            case 2:
+                relativeLayout2.setVisibility(View.VISIBLE);
+                count2.setText(String.valueOf(diffr));
+                prg2.setProgress(prog);
+                btn2.setText("Quiz");
+                break;
+            case 3:
+                relativeLayout3.setVisibility(View.VISIBLE);
+                btn3.setText("Quiz");
+                count3.setText(String.valueOf(diffr));
+                prg3.setProgress(prog);
+                break;
+            case 4:
+                relativeLayout4.setVisibility(View.VISIBLE);
+                btn4.setText("Quiz");
+                count4.setText(String.valueOf(diffr));
+                prg4.setProgress(prog);
+                break;
+            case 5:
+                relativeLayout5.setVisibility(View.VISIBLE);
+                btn5.setText("Quiz");
+                count5.setText(String.valueOf(diffr));
+                prg5.setProgress(prog);
+                break;
+        }
     }
 }
