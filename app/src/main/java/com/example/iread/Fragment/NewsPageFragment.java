@@ -121,7 +121,8 @@ public class NewsPageFragment extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 final BookQuiz book = dataSnapshot.getValue(BookQuiz.class);
-                titre2.setText(book.getName());
+                StringBuffer strr = new StringBuffer(book.getName());
+                titre2.setText(strr.insert(22,"\n"));
                 auth2.setText(book.getAuteur());
                 rat2.setRating(Float.parseFloat(book.getStar()));
                 Glide.with(getContext()).load(book.getImage()).into(img2);
