@@ -14,6 +14,7 @@ import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.iread.R;
@@ -34,6 +35,9 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class NewsPageFragment extends Fragment {
 
     private TextView titre1,titre2,titre3,titre4,titre5,titre6;
@@ -42,7 +46,7 @@ public class NewsPageFragment extends Fragment {
     private ImageView img1,img2,img3,img4,img5,img6;
     private ProgressBar prg1,prg2,prg3,prg4,prg5,prg6;
     private TextView count1,count2,count3,count4,count5,count6;
-    private RelativeLayout relativeLayout1;
+    public static RelativeLayout relativeLayout1,relativeLayout2,relativeLayout3,relativeLayout4,relativeLayout5,relativeLayout6;
     public static Button  btn1,btn2,btn3,btn4,btn5;
     DatabaseReference reference,reference2,reference3,reference4,reference5;
     private CollectionReference defi = FirebaseFirestore.getInstance().collection("Defi");
@@ -115,6 +119,18 @@ public class NewsPageFragment extends Fragment {
         count4=result.findViewById(R.id.textCountDown4);
         count5=result.findViewById(R.id.textCountDown5);
 
+        relativeLayout1=result.findViewById(R.id.defi_relative1);
+        relativeLayout1.setVisibility(View.INVISIBLE);
+        relativeLayout2=result.findViewById(R.id.defi_relative2);
+        relativeLayout2.setVisibility(View.INVISIBLE);
+        relativeLayout3=result.findViewById(R.id.defi_relative3);
+        relativeLayout3.setVisibility(View.INVISIBLE);
+        relativeLayout4=result.findViewById(R.id.defi_relative4);
+        relativeLayout4.setVisibility(View.INVISIBLE);
+        relativeLayout5=result.findViewById(R.id.defi_relative5);
+        relativeLayout5.setVisibility(View.INVISIBLE);
+        relativeLayout6=result.findViewById(R.id.defi_relative6);
+        relativeLayout6.setVisibility(View.INVISIBLE);
 
 
         reference= FirebaseDatabase.getInstance().getReference().child("Books").child("book1");
@@ -210,6 +226,9 @@ public class NewsPageFragment extends Fragment {
                     final DefiAccepted defiAccepted =documentSnapshot.toObject(DefiAccepted.class);
                     if (documentSnapshot.getId().equals(userid+String.valueOf(defiAccepted.getLivre()))){
                         ChangeBtn(defiAccepted.getLivre());
+                        Date d = new Date();
+                        d= defiAccepted.getDateEnd();
+                        Toast.makeText(getContext(),d.getDay(),Toast.LENGTH_LONG).show();
                     }
                     defi.document(documentSnapshot.getId()).collection("Friends").document(userid).get()
                          .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -217,6 +236,10 @@ public class NewsPageFragment extends Fragment {
                              public void onSuccess(DocumentSnapshot documentSnapshot2) {
                                  if (documentSnapshot2.exists()){
                                      ChangeBtn(defiAccepted.getLivre());
+                                     Date d = new Date(defiAccepted.getDateEnd().getTime()+ (604800000L * 2) + (24 * 60 * 60));
+                                     SimpleDateFormat dt = new SimpleDateFormat("dd");
+                                     String stringdate = dt.format(d);
+                                     Toast.makeText(getContext(),stringdate,Toast.LENGTH_LONG).show();
                                  }
                              }
                          });
@@ -312,18 +335,23 @@ public class NewsPageFragment extends Fragment {
     public void ChangeBtn(int arg){
         switch (arg){
             case 1:
+                relativeLayout1.setVisibility(View.VISIBLE);
                 btn1.setText("Quiz");
                 break;
             case 2:
+                relativeLayout2.setVisibility(View.VISIBLE);
                 btn2.setText("Quiz");
                 break;
             case 3:
+                relativeLayout3.setVisibility(View.VISIBLE);
                 btn3.setText("Quiz");
                 break;
             case 4:
+                relativeLayout4.setVisibility(View.VISIBLE);
                 btn4.setText("Quiz");
                 break;
             case 5:
+                relativeLayout5.setVisibility(View.VISIBLE);
                 btn5.setText("Quiz");
                 break;
         }
