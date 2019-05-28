@@ -36,7 +36,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.Date;
+
+import static java.time.temporal.ChronoUnit.DAYS;
 
 public class NewsPageFragment extends Fragment {
 
@@ -226,9 +230,7 @@ public class NewsPageFragment extends Fragment {
                     final DefiAccepted defiAccepted =documentSnapshot.toObject(DefiAccepted.class);
                     if (documentSnapshot.getId().equals(userid+String.valueOf(defiAccepted.getLivre()))){
                         ChangeBtn(defiAccepted.getLivre());
-                        Date d = new Date();
-                        d= defiAccepted.getDateEnd();
-                        Toast.makeText(getContext(),d.getDay(),Toast.LENGTH_LONG).show();
+
                     }
                     defi.document(documentSnapshot.getId()).collection("Friends").document(userid).get()
                          .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -236,10 +238,8 @@ public class NewsPageFragment extends Fragment {
                              public void onSuccess(DocumentSnapshot documentSnapshot2) {
                                  if (documentSnapshot2.exists()){
                                      ChangeBtn(defiAccepted.getLivre());
-                                     Date d = new Date(defiAccepted.getDateEnd().getTime()+ (604800000L * 2) + (24 * 60 * 60));
-                                     SimpleDateFormat dt = new SimpleDateFormat("dd");
-                                     String stringdate = dt.format(d);
-                                     Toast.makeText(getContext(),stringdate,Toast.LENGTH_LONG).show();
+                                     CalcProgress(defiAccepted.getDateEnd());
+
                                  }
                              }
                          });
@@ -355,5 +355,27 @@ public class NewsPageFragment extends Fragment {
                 btn5.setText("Quiz");
                 break;
         }
+    }
+    public void CalcProgress(Date arg){
+        Calendar cal = Calendar.getInstance();
+        cal.set(2019,cal.get(Calendar.MONTH) ,cal.get(Calendar.DAY_OF_MONTH));
+        Date currentday = cal.getTime();
+        SimpleDateFormat dt = new SimpleDateFormat("dd");
+        int jour = Integer.parseInt(dt.format(arg));
+        SimpleDateFormat dm = new SimpleDateFormat("MM");//this line
+        int mois=Integer.parseInt(dm.format(arg));
+        cal.set(2019,mois-1,jour);
+        Date dateFin = cal.getTime();
+        long diffr = (dateFin.getTime()- currentday.getTime())/86400000;
+
+        //SimpleDateFormat tt = new SimpleDateFormat("dd/MM/YYYY");
+        //String curr = tt.format(currentday);
+        //String datend = tt.format(dateFin);
+        //Toast.makeText(getContext(),"Current : "+curr+"  "+"DateFin "+datend+"Duree "+diffr,Toast.LENGTH_LONG).show();
+
+        relativeLayout2.setVisibility(View.VISIBLE);
+        count2.setText(String.valueOf(diffr));
+        int prog = (int)(diffr*100)/30;
+        prg2.setProgress(prog);
     }
 }
