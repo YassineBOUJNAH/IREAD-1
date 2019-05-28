@@ -10,7 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RatingBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -34,10 +36,13 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 public class NewsPageFragment extends Fragment {
 
-    private TextView titre1,titre2,titre3,titre4,titre5;
-    private TextView auth1,auth2,auth3,auth4,auth5;
-    private RatingBar rat1,rat2,rat3,rat4,rat5;
-    private ImageView img1,img2,img3,img4,img5;
+    private TextView titre1,titre2,titre3,titre4,titre5,titre6;
+    private TextView auth1,auth2,auth3,auth4,auth5,auth6;
+    private RatingBar rat1,rat2,rat3,rat4,rat5,rat6;
+    private ImageView img1,img2,img3,img4,img5,img6;
+    private ProgressBar prg1,prg2,prg3,prg4,prg5,prg6;
+    private TextView count1,count2,count3,count4,count5,count6;
+    private RelativeLayout relativeLayout1;
     public static Button  btn1,btn2,btn3,btn4,btn5;
     DatabaseReference reference,reference2,reference3,reference4,reference5;
     private CollectionReference defi = FirebaseFirestore.getInstance().collection("Defi");
@@ -98,6 +103,20 @@ public class NewsPageFragment extends Fragment {
         btn4=result.findViewById(R.id.defi_start4);
         btn5=result.findViewById(R.id.defi_start5);
 
+        prg1=result.findViewById(R.id.progressBar);
+        prg2=result.findViewById(R.id.progressBar2);
+        prg3=result.findViewById(R.id.progressBar3);
+        prg4=result.findViewById(R.id.progressBar4);
+        prg5=result.findViewById(R.id.progressBar5);
+
+        count1=result.findViewById(R.id.textCountDown);
+        count2=result.findViewById(R.id.textCountDown2);
+        count3=result.findViewById(R.id.textCountDown3);
+        count4=result.findViewById(R.id.textCountDown4);
+        count5=result.findViewById(R.id.textCountDown5);
+
+
+
         reference= FirebaseDatabase.getInstance().getReference().child("Books").child("book1");
             reference.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -106,6 +125,7 @@ public class NewsPageFragment extends Fragment {
                     titre1.setText(book.getName());
                     auth1.setText(book.getAuteur());
                     rat1.setRating(Float.parseFloat(book.getStar()));
+
                     Glide.with(getContext()).load(book.getImage()).into(img1);
                 }
 

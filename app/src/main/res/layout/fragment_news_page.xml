@@ -43,84 +43,101 @@
                         android:layout_width="match_parent"
                         android:layout_height="135dp"
                         android:layout_margin="8dp"
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
-                            <TextView
-                                android:id="@+id/defi_title"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:maxLines="3"
-                                android:text="@string/title"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
-                            <TextView
-                                android:id="@+id/defi_author"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="12sp"
-                                android:text="@string/author"
-                                android:maxLines="2"
-                                />
-                            <RatingBar
-                                android:id="@+id/defi_rating"
-                                style="?android:attr/ratingBarStyleSmall"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:isIndicator="true"
-                                android:numStars="5"
-                                android:rating="3.5"
-                                android:stepSize="0.25"/>
-
+                            android:orientation="horizontal">
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:layout_margin="5dp">
-                                <Button
-                                    android:id="@+id/defi_start"
-                                    android:layout_width="100dp"
-                                    android:layout_height="60dp"
-                                    android:text="lancer"
+                                android:orientation="vertical">
+                                <TextView
+                                    android:id="@+id/defi_title"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:maxLines="3"
+                                    android:text="@string/title"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
+                                <TextView
+                                    android:id="@+id/defi_author"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="12sp"
+                                    android:text="@string/author"
+                                    android:maxLines="2"
                                     />
-                                <Button
-                                    android:id="@+id/defi_lire"
-                                    android:layout_width="100dp"
-                                    android:layout_height="60dp"
-                                    android:text="Lire"
-                                    android:layout_marginLeft="10dp"
-                                    />
+                                <RatingBar
+                                    android:id="@+id/defi_rating"
+                                    style="?android:attr/ratingBarStyleSmall"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5dp"
+                                    android:isIndicator="true"
+                                    android:numStars="5"
+                                    android:rating="3.5"
+                                    android:stepSize="0.25"/>
                             </LinearLayout>
-                        </LinearLayout>
-                        <RelativeLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <ProgressBar
-                                android:id="@+id/progressBar"
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
-                                android:indeterminate="false"
-                                android:progressDrawable="@drawable/circular_progress_bar"
-                                android:background="@drawable/circle_shape"
-                                style="?android:attr/progressBarStyleHorizontal"
-                                android:max="100"
-                                android:progress="80"
-                                />
-                            <TextView
-                                android:id="@+id/textCountDown"
+                            <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="999"
-                                android:textColor="#888787"
-                                android:layout_alignParentLeft="true"
-                                android:layout_alignParentRight="true"
-                                android:layout_centerVertical="true"
-                                android:gravity="center"/>
-                        </RelativeLayout>
+                                android:gravity="end">
+                                <RelativeLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+
+                                    >
+                                    <ProgressBar
+                                        android:id="@+id/progressBar"
+                                        android:layout_width="60dp"
+                                        android:layout_height="60dp"
+                                        android:indeterminate="false"
+                                        android:progressDrawable="@drawable/circular_progress_bar"
+                                        android:background="@drawable/circle_shape"
+                                        style="?android:attr/progressBarStyleHorizontal"
+                                        android:max="100"
+                                        android:progress="80"
+                                        android:layout_alignParentRight="true"
+
+                                        />
+                                    <TextView
+                                        android:id="@+id/textCountDown"
+                                        android:padding="17dp"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="999"
+                                        android:textColor="#888787"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_centerVertical="true"
+                                        android:gravity="center"/>
+                                </RelativeLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_margin="5dp">
+                            <Button
+                                android:id="@+id/defi_start"
+                                android:layout_width="100dp"
+                                android:layout_height="60dp"
+                                android:text="lancer"
+                                />
+                            <Button
+                                android:id="@+id/defi_lire"
+                                android:layout_width="100dp"
+                                android:layout_height="60dp"
+                                android:text="Lire"
+                                android:layout_marginLeft="10dp"
+                                />
+                        </LinearLayout>
+
+
                     </LinearLayout>
+
+
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -139,84 +156,101 @@
                         android:layout_width="match_parent"
                         android:layout_height="135dp"
                         android:layout_margin="8dp"
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
-                            <TextView
-                                android:id="@+id/defi_title2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:maxLines="3"
-                                android:text="@string/title"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
-                            <TextView
-                                android:id="@+id/defi_author2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="12sp"
-                                android:text="@string/author"
-                                android:maxLines="2"
-                                />
-                            <RatingBar
-                                android:id="@+id/defi_rating2"
-                                style="?android:attr/ratingBarStyleSmall"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:isIndicator="true"
-                                android:numStars="5"
-                                android:rating="3.5"
-                                android:stepSize="0.25"/>
-
+                            android:orientation="horizontal">
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:layout_margin="5dp">
-                                <Button
-                                    android:id="@+id/defi_start2"
-                                    android:layout_width="100dp"
-                                    android:layout_height="60dp"
-                                    android:text="lancer"
+                                android:orientation="vertical">
+                                <TextView
+                                    android:id="@+id/defi_title2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:maxLines="3"
+                                    android:text="@string/title"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
+                                <TextView
+                                    android:id="@+id/defi_author2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="12sp"
+                                    android:text="@string/author"
+                                    android:maxLines="2"
                                     />
-                                <Button
-                                    android:id="@+id/defi_lire2"
-                                    android:layout_width="100dp"
-                                    android:layout_height="60dp"
-                                    android:text="Lire"
-                                    android:layout_marginLeft="10dp"
-                                    />
+                                <RatingBar
+                                    android:id="@+id/defi_rating2"
+                                    style="?android:attr/ratingBarStyleSmall"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5dp"
+                                    android:isIndicator="true"
+                                    android:numStars="5"
+                                    android:rating="3.5"
+                                    android:stepSize="0.25"/>
                             </LinearLayout>
-                        </LinearLayout>
-                        <RelativeLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <ProgressBar
-                                android:id="@+id/progressBar2"
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
-                                android:indeterminate="false"
-                                android:progressDrawable="@drawable/circular_progress_bar"
-                                android:background="@drawable/circle_shape"
-                                style="?android:attr/progressBarStyleHorizontal"
-                                android:max="100"
-                                android:progress="80"
-                                />
-                            <TextView
-                                android:id="@+id/textCountDown2"
+                            <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="999"
-                                android:textColor="#888787"
-                                android:layout_alignParentLeft="true"
-                                android:layout_alignParentRight="true"
-                                android:layout_centerVertical="true"
-                                android:gravity="center"/>
-                        </RelativeLayout>
+                                android:gravity="end">
+                                <RelativeLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+
+                                    >
+                                    <ProgressBar
+                                        android:id="@+id/progressBar2"
+                                        android:layout_width="60dp"
+                                        android:layout_height="60dp"
+                                        android:indeterminate="false"
+                                        android:progressDrawable="@drawable/circular_progress_bar"
+                                        android:background="@drawable/circle_shape"
+                                        style="?android:attr/progressBarStyleHorizontal"
+                                        android:max="100"
+                                        android:progress="80"
+                                        android:layout_alignParentRight="true"
+
+                                        />
+                                    <TextView
+                                        android:id="@+id/textCountDown2"
+                                        android:padding="17dp"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="999"
+                                        android:textColor="#888787"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_centerVertical="true"
+                                        android:gravity="center"/>
+                                </RelativeLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_margin="5dp">
+                            <Button
+                                android:id="@+id/defi_start2"
+                                android:layout_width="100dp"
+                                android:layout_height="60dp"
+                                android:text="lancer"
+                                />
+                            <Button
+                                android:id="@+id/defi_lire2"
+                                android:layout_width="100dp"
+                                android:layout_height="60dp"
+                                android:text="Lire"
+                                android:layout_marginLeft="10dp"
+                                />
+                        </LinearLayout>
+
+
                     </LinearLayout>
+
+
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -235,84 +269,101 @@
                         android:layout_width="match_parent"
                         android:layout_height="135dp"
                         android:layout_margin="8dp"
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
-                            <TextView
-                                android:id="@+id/defi_title3"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:maxLines="3"
-                                android:text="@string/title"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
-                            <TextView
-                                android:id="@+id/defi_author3"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="12sp"
-                                android:text="@string/author"
-                                android:maxLines="2"
-                                />
-                            <RatingBar
-                                android:id="@+id/defi_rating3"
-                                style="?android:attr/ratingBarStyleSmall"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:isIndicator="true"
-                                android:numStars="5"
-                                android:rating="3.5"
-                                android:stepSize="0.25"/>
-
+                            android:orientation="horizontal">
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:layout_margin="5dp">
-                                <Button
-                                    android:id="@+id/defi_start3"
-                                    android:layout_width="100dp"
-                                    android:layout_height="60dp"
-                                    android:text="lancer"
+                                android:orientation="vertical">
+                                <TextView
+                                    android:id="@+id/defi_title3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:maxLines="3"
+                                    android:text="@string/title"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
+                                <TextView
+                                    android:id="@+id/defi_author3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="12sp"
+                                    android:text="@string/author"
+                                    android:maxLines="2"
                                     />
-                                <Button
-                                    android:id="@+id/defi_lire3"
-                                    android:layout_width="100dp"
-                                    android:layout_height="60dp"
-                                    android:text="Lire"
-                                    android:layout_marginLeft="10dp"
-                                    />
+                                <RatingBar
+                                    android:id="@+id/defi_rating3"
+                                    style="?android:attr/ratingBarStyleSmall"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5dp"
+                                    android:isIndicator="true"
+                                    android:numStars="5"
+                                    android:rating="3.5"
+                                    android:stepSize="0.25"/>
                             </LinearLayout>
-                        </LinearLayout>
-                        <RelativeLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <ProgressBar
-                                android:id="@+id/progressBar3"
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
-                                android:indeterminate="false"
-                                android:progressDrawable="@drawable/circular_progress_bar"
-                                android:background="@drawable/circle_shape"
-                                style="?android:attr/progressBarStyleHorizontal"
-                                android:max="100"
-                                android:progress="80"
-                                />
-                            <TextView
-                                android:id="@+id/textCountDown3"
+                            <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="999"
-                                android:textColor="#888787"
-                                android:layout_alignParentLeft="true"
-                                android:layout_alignParentRight="true"
-                                android:layout_centerVertical="true"
-                                android:gravity="center"/>
-                        </RelativeLayout>
+                                android:gravity="end">
+                                <RelativeLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+
+                                    >
+                                    <ProgressBar
+                                        android:id="@+id/progressBar3"
+                                        android:layout_width="60dp"
+                                        android:layout_height="60dp"
+                                        android:indeterminate="false"
+                                        android:progressDrawable="@drawable/circular_progress_bar"
+                                        android:background="@drawable/circle_shape"
+                                        style="?android:attr/progressBarStyleHorizontal"
+                                        android:max="100"
+                                        android:progress="80"
+                                        android:layout_alignParentRight="true"
+
+                                        />
+                                    <TextView
+                                        android:id="@+id/textCountDown3"
+                                        android:padding="17dp"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="999"
+                                        android:textColor="#888787"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_centerVertical="true"
+                                        android:gravity="center"/>
+                                </RelativeLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_margin="5dp">
+                            <Button
+                                android:id="@+id/defi_start3"
+                                android:layout_width="100dp"
+                                android:layout_height="60dp"
+                                android:text="lancer"
+                                />
+                            <Button
+                                android:id="@+id/defi_lire3"
+                                android:layout_width="100dp"
+                                android:layout_height="60dp"
+                                android:text="Lire"
+                                android:layout_marginLeft="10dp"
+                                />
+                        </LinearLayout>
+
+
                     </LinearLayout>
+
+
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -331,84 +382,101 @@
                         android:layout_width="match_parent"
                         android:layout_height="135dp"
                         android:layout_margin="8dp"
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
-                            <TextView
-                                android:id="@+id/defi_title4"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:maxLines="3"
-                                android:text="@string/title"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
-                            <TextView
-                                android:id="@+id/defi_author4"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="12sp"
-                                android:text="@string/author"
-                                android:maxLines="2"
-                                />
-                            <RatingBar
-                                android:id="@+id/defi_rating4"
-                                style="?android:attr/ratingBarStyleSmall"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:isIndicator="true"
-                                android:numStars="5"
-                                android:rating="3.5"
-                                android:stepSize="0.25"/>
-
+                            android:orientation="horizontal">
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:layout_margin="5dp">
-                                <Button
-                                    android:id="@+id/defi_start4"
-                                    android:layout_width="100dp"
-                                    android:layout_height="60dp"
-                                    android:text="lancer"
+                                android:orientation="vertical">
+                                <TextView
+                                    android:id="@+id/defi_title4"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:maxLines="3"
+                                    android:text="@string/title"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
+                                <TextView
+                                    android:id="@+id/defi_author4"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="12sp"
+                                    android:text="@string/author"
+                                    android:maxLines="2"
                                     />
-                                <Button
-                                    android:id="@+id/defi_lire4"
-                                    android:layout_width="100dp"
-                                    android:layout_height="60dp"
-                                    android:text="Lire"
-                                    android:layout_marginLeft="10dp"
-                                    />
+                                <RatingBar
+                                    android:id="@+id/defi_rating4"
+                                    style="?android:attr/ratingBarStyleSmall"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5dp"
+                                    android:isIndicator="true"
+                                    android:numStars="5"
+                                    android:rating="3.5"
+                                    android:stepSize="0.25"/>
                             </LinearLayout>
-                        </LinearLayout>
-                        <RelativeLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <ProgressBar
-                                android:id="@+id/progressBar4"
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
-                                android:indeterminate="false"
-                                android:progressDrawable="@drawable/circular_progress_bar"
-                                android:background="@drawable/circle_shape"
-                                style="?android:attr/progressBarStyleHorizontal"
-                                android:max="100"
-                                android:progress="80"
-                                />
-                            <TextView
-                                android:id="@+id/textCountDown4"
+                            <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="999"
-                                android:textColor="#888787"
-                                android:layout_alignParentLeft="true"
-                                android:layout_alignParentRight="true"
-                                android:layout_centerVertical="true"
-                                android:gravity="center"/>
-                        </RelativeLayout>
+                                android:gravity="end">
+                                <RelativeLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+
+                                    >
+                                    <ProgressBar
+                                        android:id="@+id/progressBar4"
+                                        android:layout_width="60dp"
+                                        android:layout_height="60dp"
+                                        android:indeterminate="false"
+                                        android:progressDrawable="@drawable/circular_progress_bar"
+                                        android:background="@drawable/circle_shape"
+                                        style="?android:attr/progressBarStyleHorizontal"
+                                        android:max="100"
+                                        android:progress="80"
+                                        android:layout_alignParentRight="true"
+
+                                        />
+                                    <TextView
+                                        android:id="@+id/textCountDown4"
+                                        android:padding="17dp"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="999"
+                                        android:textColor="#888787"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_centerVertical="true"
+                                        android:gravity="center"/>
+                                </RelativeLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_margin="5dp">
+                            <Button
+                                android:id="@+id/defi_start4"
+                                android:layout_width="100dp"
+                                android:layout_height="60dp"
+                                android:text="lancer"
+                                />
+                            <Button
+                                android:id="@+id/defi_lire4"
+                                android:layout_width="100dp"
+                                android:layout_height="60dp"
+                                android:text="Lire"
+                                android:layout_marginLeft="10dp"
+                                />
+                        </LinearLayout>
+
+
                     </LinearLayout>
+
+
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -427,84 +495,101 @@
                         android:layout_width="match_parent"
                         android:layout_height="135dp"
                         android:layout_margin="8dp"
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
-                            <TextView
-                                android:id="@+id/defi_title5"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:maxLines="3"
-                                android:text="@string/title"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
-                            <TextView
-                                android:id="@+id/defi_author5"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="12sp"
-                                android:text="@string/author"
-                                android:maxLines="2"
-                                />
-                            <RatingBar
-                                android:id="@+id/defi_rating5"
-                                style="?android:attr/ratingBarStyleSmall"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:isIndicator="true"
-                                android:numStars="5"
-                                android:rating="3.5"
-                                android:stepSize="0.25"/>
-
+                            android:orientation="horizontal">
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:layout_margin="5dp">
-                                <Button
-                                    android:id="@+id/defi_start5"
-                                    android:layout_width="100dp"
-                                    android:layout_height="60dp"
-                                    android:text="lancer"
+                                android:orientation="vertical">
+                                <TextView
+                                    android:id="@+id/defi_title5"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:maxLines="3"
+                                    android:text="@string/title"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
+                                <TextView
+                                    android:id="@+id/defi_author5"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="12sp"
+                                    android:text="@string/author"
+                                    android:maxLines="2"
                                     />
-                                <Button
-                                    android:id="@+id/defi_lire5"
-                                    android:layout_width="100dp"
-                                    android:layout_height="60dp"
-                                    android:text="Lire"
-                                    android:layout_marginLeft="10dp"
-                                    />
+                                <RatingBar
+                                    android:id="@+id/defi_rating5"
+                                    style="?android:attr/ratingBarStyleSmall"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5dp"
+                                    android:isIndicator="true"
+                                    android:numStars="5"
+                                    android:rating="3.5"
+                                    android:stepSize="0.25"/>
                             </LinearLayout>
-                        </LinearLayout>
-                        <RelativeLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <ProgressBar
-                                android:id="@+id/progressBar5"
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
-                                android:indeterminate="false"
-                                android:progressDrawable="@drawable/circular_progress_bar"
-                                android:background="@drawable/circle_shape"
-                                style="?android:attr/progressBarStyleHorizontal"
-                                android:max="100"
-                                android:progress="80"
-                                />
-                            <TextView
-                                android:id="@+id/textCountDown5"
+                            <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="999"
-                                android:textColor="#888787"
-                                android:layout_alignParentLeft="true"
-                                android:layout_alignParentRight="true"
-                                android:layout_centerVertical="true"
-                                android:gravity="center"/>
-                        </RelativeLayout>
+                                android:gravity="end">
+                                <RelativeLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+
+                                    >
+                                    <ProgressBar
+                                        android:id="@+id/progressBar5"
+                                        android:layout_width="60dp"
+                                        android:layout_height="60dp"
+                                        android:indeterminate="false"
+                                        android:progressDrawable="@drawable/circular_progress_bar"
+                                        android:background="@drawable/circle_shape"
+                                        style="?android:attr/progressBarStyleHorizontal"
+                                        android:max="100"
+                                        android:progress="80"
+                                        android:layout_alignParentRight="true"
+
+                                        />
+                                    <TextView
+                                        android:id="@+id/textCountDown5"
+                                        android:padding="17dp"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="999"
+                                        android:textColor="#888787"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_centerVertical="true"
+                                        android:gravity="center"/>
+                                </RelativeLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_margin="5dp">
+                            <Button
+                                android:id="@+id/defi_start5"
+                                android:layout_width="100dp"
+                                android:layout_height="60dp"
+                                android:text="lancer"
+                                />
+                            <Button
+                                android:id="@+id/defi_lire5"
+                                android:layout_width="100dp"
+                                android:layout_height="60dp"
+                                android:text="Lire"
+                                android:layout_marginLeft="10dp"
+                                />
+                        </LinearLayout>
+
+
                     </LinearLayout>
+
+
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -523,85 +608,222 @@
                         android:layout_width="match_parent"
                         android:layout_height="135dp"
                         android:layout_margin="8dp"
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
-                            <TextView
-                                android:id="@+id/defi_title6"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:maxLines="3"
-                                android:text="@string/title"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
-                            <TextView
-                                android:id="@+id/defi_author6"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="12sp"
-                                android:text="@string/author"
-                                android:maxLines="2"
-                                />
-                            <RatingBar
-                                android:id="@+id/defi_rating6"
-                                style="?android:attr/ratingBarStyleSmall"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:isIndicator="true"
-                                android:numStars="5"
-                                android:rating="3.5"
-                                android:stepSize="0.25"/>
-
+                            android:orientation="horizontal">
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:layout_margin="5dp">
-                                <Button
-                                    android:id="@+id/defi_start6"
-                                    android:layout_width="100dp"
-                                    android:layout_height="60dp"
-                                    android:text="lancer"
+                                android:orientation="vertical">
+                                <TextView
+                                    android:id="@+id/defi_title6"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:maxLines="3"
+                                    android:text="@string/title"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
+                                <TextView
+                                    android:id="@+id/defi_author6"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="12sp"
+                                    android:text="@string/author"
+                                    android:maxLines="2"
                                     />
-                                <Button
-                                    android:id="@+id/defi_lire6"
-                                    android:layout_width="100dp"
-                                    android:layout_height="60dp"
-                                    android:text="Lire"
-                                    android:layout_marginLeft="10dp"
-                                    />
+                                <RatingBar
+                                    android:id="@+id/defi_rating6"
+                                    style="?android:attr/ratingBarStyleSmall"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5dp"
+                                    android:isIndicator="true"
+                                    android:numStars="5"
+                                    android:rating="3.5"
+                                    android:stepSize="0.25"/>
                             </LinearLayout>
-                        </LinearLayout>
-                        <RelativeLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-                            <ProgressBar
-                                android:id="@+id/progressBar6"
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
-                                android:indeterminate="false"
-                                android:progressDrawable="@drawable/circular_progress_bar"
-                                android:background="@drawable/circle_shape"
-                                style="?android:attr/progressBarStyleHorizontal"
-                                android:max="100"
-                                android:progress="80"
-                                />
-                            <TextView
-                                android:id="@+id/textCountDown6"
+                            <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="999"
-                                android:textColor="#888787"
-                                android:layout_alignParentLeft="true"
-                                android:layout_alignParentRight="true"
-                                android:layout_centerVertical="true"
-                                android:gravity="center"/>
-                        </RelativeLayout>
+                                android:gravity="end">
+                                <RelativeLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+
+                                    >
+                                    <ProgressBar
+                                        android:id="@+id/progressBar6"
+                                        android:layout_width="60dp"
+                                        android:layout_height="60dp"
+                                        android:indeterminate="false"
+                                        android:progressDrawable="@drawable/circular_progress_bar"
+                                        android:background="@drawable/circle_shape"
+                                        style="?android:attr/progressBarStyleHorizontal"
+                                        android:max="100"
+                                        android:progress="80"
+                                        android:layout_alignParentRight="true"
+
+                                        />
+                                    <TextView
+                                        android:id="@+id/textCountDown6"
+                                        android:padding="17dp"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="999"
+                                        android:textColor="#888787"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_centerVertical="true"
+                                        android:gravity="center"/>
+                                </RelativeLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_margin="5dp">
+                            <Button
+                                android:id="@+id/defi_start6"
+                                android:layout_width="100dp"
+                                android:layout_height="60dp"
+                                android:text="lancer"
+                                />
+                            <Button
+                                android:id="@+id/defi_lire6"
+                                android:layout_width="100dp"
+                                android:layout_height="60dp"
+                                android:text="Lire"
+                                android:layout_marginLeft="10dp"
+                                />
+                        </LinearLayout>
+
+
                     </LinearLayout>
+
+
                 </LinearLayout>
+
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_marginTop="5dp"
+                    android:background="#fff"
+                    android:padding="8dp">
+                    <ImageView
+                        android:id="@+id/defi_thumbnail7"
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/loading_shape"
+                        android:contentDescription="@string/thumbnail"
+                        />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="135dp"
+                        android:layout_margin="8dp"
+                        android:orientation="vertical">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+                                <TextView
+                                    android:id="@+id/defi_title7"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:maxLines="3"
+                                    android:text="@string/title"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
+                                <TextView
+                                    android:id="@+id/defi_author7"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="12sp"
+                                    android:text="@string/author"
+                                    android:maxLines="2"
+                                    />
+                                <RatingBar
+                                    android:id="@+id/defi_rating7"
+                                    style="?android:attr/ratingBarStyleSmall"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5dp"
+                                    android:isIndicator="true"
+                                    android:numStars="5"
+                                    android:rating="3.5"
+                                    android:stepSize="0.25"/>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="end">
+                                <RelativeLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+
+                                    >
+                                    <ProgressBar
+                                        android:id="@+id/progressBar7"
+                                        android:layout_width="60dp"
+                                        android:layout_height="60dp"
+                                        android:indeterminate="false"
+                                        android:progressDrawable="@drawable/circular_progress_bar"
+                                        android:background="@drawable/circle_shape"
+                                        style="?android:attr/progressBarStyleHorizontal"
+                                        android:max="100"
+                                        android:progress="80"
+                                        android:layout_alignParentRight="true"
+
+                                        />
+                                    <TextView
+                                        android:padding="17dp"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="999"
+                                        android:textColor="#888787"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_centerVertical="true"
+                                        android:gravity="center"/>
+                                </RelativeLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_margin="5dp">
+                            <Button
+                                android:id="@+id/defi_start7"
+                                android:layout_width="100dp"
+                                android:layout_height="60dp"
+                                android:text="lancer"
+                                />
+                            <Button
+                                android:id="@+id/defi_lire7"
+                                android:layout_width="100dp"
+                                android:layout_height="60dp"
+                                android:text="Lire"
+                                android:layout_marginLeft="10dp"
+                                />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+
+
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
