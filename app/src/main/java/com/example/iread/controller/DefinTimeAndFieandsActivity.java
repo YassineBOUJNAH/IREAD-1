@@ -90,6 +90,7 @@ public class DefinTimeAndFieandsActivity extends AppCompatActivity {
             }
         });
     }
+
     private void configureToolbar(){
         //Get the toolbar (Serialise)
         Toolbar toolbar = (Toolbar) findViewById(R.id.defin_challenge_bar);
