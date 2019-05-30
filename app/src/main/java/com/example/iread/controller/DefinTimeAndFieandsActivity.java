@@ -74,7 +74,9 @@ public class DefinTimeAndFieandsActivity extends AppCompatActivity {
                 Intent intent = new Intent(DefinTimeAndFieandsActivity.this, DefiFormulaireActivity.class);
                 intent.putExtra("Quiz",quiz);
                 intent.putExtra("date",String.valueOf(dd));
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
+                finish();
             }
         });
         start.setOnClickListener(new View.OnClickListener() {

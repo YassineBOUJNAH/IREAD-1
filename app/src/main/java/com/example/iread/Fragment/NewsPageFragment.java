@@ -21,6 +21,7 @@ import com.example.iread.R;
 import com.example.iread.auth.HomeActivity;
 import com.example.iread.model.BookQuiz;
 import com.example.iread.model.DefiAccepted;
+import com.example.iread.model.friendsDefi;
 import com.example.iread.options.SettingActivity;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -229,7 +230,7 @@ public class NewsPageFragment extends Fragment {
                 for (DocumentSnapshot documentSnapshot : documentSnapshots){
                     final DefiAccepted defiAccepted =documentSnapshot.toObject(DefiAccepted.class);
                     if (documentSnapshot.getId().equals(userid+String.valueOf(defiAccepted.getLivre()))){
-                        ChangeView(defiAccepted.getLivre(),defiAccepted.getDateEnd());
+                        ChangeView(defiAccepted.getLivre(),defiAccepted.getDateEnd(),defiAccepted.getNote());
 
                     }
                     defi.document(documentSnapshot.getId()).collection("Friends").document(userid).get()
@@ -237,7 +238,8 @@ public class NewsPageFragment extends Fragment {
                              @Override
                              public void onSuccess(DocumentSnapshot documentSnapshot2) {
                                  if (documentSnapshot2.exists()){
-                                     ChangeView(defiAccepted.getLivre(),defiAccepted.getDateEnd());
+                                     friendsDefi friendsdefi = documentSnapshot2.toObject(friendsDefi.class);
+                                     ChangeView(defiAccepted.getLivre(),defiAccepted.getDateEnd(),friendsdefi.getNote());
 
                                  }
                              }
@@ -331,7 +333,7 @@ public class NewsPageFragment extends Fragment {
             throw new ClassCastException(e.toString()+ " must implement OnButtonClickedListener");        }
     }
 
-    public void ChangeView(int pos,Date arg){
+    public void ChangeView(int pos,Date arg,int note){
         Calendar cal = Calendar.getInstance();
         cal.set(2019,cal.get(Calendar.MONTH) ,cal.get(Calendar.DAY_OF_MONTH));
         Date currentday = cal.getTime();
@@ -345,16 +347,30 @@ public class NewsPageFragment extends Fragment {
         int prog = (int)(diffr*100)/30;
         switch (pos){
             case 1:
-                relativeLayout1.setVisibility(View.VISIBLE);
-                btn1.setText("Quiz");
-                count1.setText(String.valueOf(diffr));
-                prg1.setProgress(prog);
+                if (note > 0){
+                    relativeLayout1.setVisibility(View.VISIBLE);
+                    btn1.setText("Resulta");
+                    count1.setText(String.valueOf(diffr));
+                    prg1.setProgress(prog);
+                }else{
+                    relativeLayout1.setVisibility(View.VISIBLE);
+                    btn1.setText("Quiz");
+                    count1.setText(String.valueOf(diffr));
+                    prg1.setProgress(prog);
+                }
                 break;
             case 2:
-                relativeLayout2.setVisibility(View.VISIBLE);
-                count2.setText(String.valueOf(diffr));
-                prg2.setProgress(prog);
-                btn2.setText("Quiz");
+                if (note > 0){
+                    relativeLayout2.setVisibility(View.VISIBLE);
+                    btn2.setText("Resulta");
+                    count2.setText(String.valueOf(diffr));
+                    prg2.setProgress(prog);
+                }else{
+                    relativeLayout2.setVisibility(View.VISIBLE);
+                    btn2.setText("Quiz");
+                    count2.setText(String.valueOf(diffr));
+                    prg2.setProgress(prog);
+                }
                 break;
             case 3:
                 relativeLayout3.setVisibility(View.VISIBLE);
