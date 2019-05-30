@@ -40,7 +40,7 @@ public class ResultaAdapter extends FirestoreRecyclerAdapter<friendsDefi, Result
         if (model.getNote()==0){
             holder.userNote.setText("pas encore");
         }else {
-            holder.userNote.setText(String.valueOf(model.getNote())+"/10");
+            holder.userNote.setText(String.valueOf(model.getNote()-10)+"/10");
         }
 
     }

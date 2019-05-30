@@ -258,11 +258,11 @@ public class HomeActivity extends BaseActivity implements NewsPageFragment.OnQui
                     defiAccepted =documentSnapshot.toObject(DefiAccepted.class);
                     doc_id = documentSnapshot.getId();
 
-                    if (quiz.equals(String.valueOf(defiAccepted.getLivre()))){////problem with this line quiz
+                    if (quiz.equals(String.valueOf(defiAccepted.getLivre()))){
                         if (documentSnapshot.getId().equals(userid+quiz)){
                             Intent myint = new Intent(getApplicationContext(), ResultatActivity.class);
-                            myint.putExtra("docid",doc_id);
-                            myint.putExtra("sender",defiAccepted.getUiSender());
+                            myint.putExtra("docid",userid+quiz);
+                            myint.putExtra("sender",userid);
                             myint.putExtra("note",String.valueOf(defiAccepted.getNote()-10));
                             startActivity(myint);
                         }else {

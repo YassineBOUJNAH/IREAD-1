@@ -58,20 +58,12 @@ public class ResultatActivity extends BaseActivity {
         userImage = findViewById(R.id.resulta_activity_img);
 
         Intent i = getIntent();
-        //final String quiz =i.getStringExtra("quiz");
+
         String userid =i.getStringExtra("docid");
         setUpRecyclerView(userid);
         String uiSender = i.getStringExtra("sender");
         int note=Integer.parseInt(i.getStringExtra("note"));
         setUseSender(uiSender,note);
-
-        //String tmp =new String("WIttKuUpRUbsPkrTEw2feD8wHo532");
-        //setUpRecyclerView(tmp);
-        //Log.d("key 999 befor :", String.valueOf(tmp.length()));
-
-
-
-
 
 
 
@@ -98,7 +90,7 @@ public class ResultatActivity extends BaseActivity {
                     }catch (Exception e){}
             }
         });
-        userNote.setText(String.valueOf(note+10)+"/10");
+        userNote.setText(String.valueOf(note)+"/10");
     }
 
     private void setUpRecyclerView(String uid) {
@@ -145,28 +137,3 @@ public class ResultatActivity extends BaseActivity {
         startActivity(new Intent(getApplicationContext(),HomeActivity.class));
     }
 }
-/*
-defi.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot documentSnapshots) {
-                for (final DocumentSnapshot documentSnapshot : documentSnapshots){
-                    defiAccepted =documentSnapshot.toObject(DefiAccepted.class);
-                    setUseSender(defiAccepted.getUiSender(),defiAccepted.getNote());
-                    if (documentSnapshot.getId().equals(userid+quiz)){
-                        setUpRecyclerView(documentSnapshot.getId());
-                    }else {
-                        defi.document(documentSnapshot.getId()).collection("Friends").document(userid).get()
-                                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                                    @Override
-                                    public void onSuccess(DocumentSnapshot documentSnapshot2) {
-                                        if (documentSnapshot2.exists()) {
-                                            setUpRecyclerView(documentSnapshot.getId());
-                                        }
-                                    }
-                                });
-                    }
-                }
-            }
-        });
-
- */
