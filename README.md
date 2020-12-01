@@ -2,4 +2,4 @@
 A mobile application that make reading easy and fun, to encourage people to read
 
 ## Screenshots Demo
-![Product Gif](./Screenshots/optimized.gif)
+![Product Gif](./Screenshots/output.gif)
