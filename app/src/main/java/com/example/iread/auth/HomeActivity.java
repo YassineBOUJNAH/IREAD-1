@@ -2,9 +2,11 @@ package com.example.iread.auth;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,18 +24,32 @@ import com.example.iread.controller.DejaLuActivity;
 import com.example.iread.controller.EntrainActivty;
 import com.example.iread.controller.LivreActivity;
 import com.example.iread.controller.QuizActivity;
+import com.example.iread.controller.ResultatActivity;
 import com.example.iread.controller.SearchBooks;
 import com.example.iread.controller.SearchFriends;
 import com.example.iread.controller.friend;
 import com.example.iread.controller.invitation;
+import com.example.iread.model.DefiAccepted;
 import com.example.iread.options.SettingActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import static com.example.iread.Fragment.NewsPageFragment.btn1;
 import static com.example.iread.Fragment.NewsPageFragment.btn2;
 import static com.example.iread.Fragment.NewsPageFragment.btn3;
 
 public class HomeActivity extends BaseActivity implements NewsPageFragment.OnQuizClickListener, BlankFragment.OnFriendClicklistener {
-
+    private CollectionReference defi = FirebaseFirestore.getInstance().collection("Defi");
+    private String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+    private  DefiAccepted defiAccepted;
+    private String doc_id;
+    private String quiz;
 
 
     @Override
@@ -144,10 +160,15 @@ public class HomeActivity extends BaseActivity implements NewsPageFragment.OnQui
     @Override
     public void OnStart1Click(View view) {
         if (btn1.getText().equals("lancer")) {
-        Intent myint = new Intent(this, DefinTimeAndFieandsActivity.class);
-        myint.putExtra("Quiz", 1);
-        startActivity(myint);
-        }else {
+            Intent myint = new Intent(this, DefinTimeAndFieandsActivity.class);
+            myint.putExtra("Quiz", 1);
+            startActivity(myint);
+        }
+        else if (btn1.getText().equals("Resulta")){
+            quiz = String.valueOf(1);
+            Toast.makeText(getApplicationContext(),"Quiz bnt1: "+quiz,Toast.LENGTH_LONG).show();
+            findResult();
+        }else{
             Intent myint = new Intent(this, QuizActivity.class);
             myint.putExtra("child", String.valueOf(1));
             startActivity(myint);
@@ -157,16 +178,24 @@ public class HomeActivity extends BaseActivity implements NewsPageFragment.OnQui
 
     @Override
     public void OnStart2Click(View view){
-        //Toast.makeText(getApplicationContext(),"btn2 : "+btn2.getText(),Toast.LENGTH_LONG).show();
         if (btn2.getText().equals("lancer")) {
             Intent myint = new Intent(this, DefinTimeAndFieandsActivity.class);
             myint.putExtra("Quiz", 2);
             startActivity(myint);
-        }else {
+        }
+        else if (btn2.getText().equals("Resulta")){
+            quiz = String.valueOf(2);
+            Toast.makeText(getApplicationContext(),"Quiz btn2: "+quiz,Toast.LENGTH_LONG).show();
+            findResult();
+        }else{
             Intent myint = new Intent(this, QuizActivity.class);
-            myint.putExtra("child", String.valueOf(1));
+            myint.putExtra("child", String.valueOf(2));
             startActivity(myint);
         }
+
+
+
+
     }
 
     @Override
@@ -175,7 +204,12 @@ public class HomeActivity extends BaseActivity implements NewsPageFragment.OnQui
             Intent myint = new Intent(this, DefinTimeAndFieandsActivity.class);
             myint.putExtra("Quiz", 3);
             startActivity(myint);
-        }else {
+        }
+        else if (btn3.getText().equals("Resulta")){
+            quiz = String.valueOf(3);
+            Toast.makeText(getApplicationContext(),"Quiz bnt3: "+quiz,Toast.LENGTH_LONG).show();
+            findResult();
+        }else{
             Intent myint = new Intent(this, QuizActivity.class);
             myint.putExtra("child", String.valueOf(3));
             startActivity(myint);
@@ -222,5 +256,38 @@ public class HomeActivity extends BaseActivity implements NewsPageFragment.OnQui
         Intent myint = new Intent(this,LivreActivity.class);
         myint.putExtra("child","3.pdf");
         startActivity(myint);
+    }
+    public void findResult(){
+        defi.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot documentSnapshots) {
+                for (DocumentSnapshot documentSnapshot : documentSnapshots){
+                    defiAccepted =documentSnapshot.toObject(DefiAccepted.class);
+                    doc_id = documentSnapshot.getId();
+
+                    if (quiz.equals(String.valueOf(defiAccepted.getLivre()))){
+                        if (documentSnapshot.getId().equals(userid+quiz)){
+                            Intent myint = new Intent(getApplicationContext(), ResultatActivity.class);
+                            myint.putExtra("docid",userid+quiz);
+                            myint.putExtra("sender",userid);
+                            myint.putExtra("note",String.valueOf(defiAccepted.getNote()-10));
+                            startActivity(myint);
+                        }else {
+                            defi.document(documentSnapshot.getId()).collection("Friends").document(userid).get()
+                                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                    @Override
+                                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                        Intent myint = new Intent(getApplicationContext(), ResultatActivity.class);
+                                        myint.putExtra("docid",doc_id);
+                                        myint.putExtra("sender",defiAccepted.getUiSender());
+                                        myint.putExtra("note",String.valueOf(defiAccepted.getNote()-10));
+                                        startActivity(myint);
+                                    }
+                                });
+                        }
+                    }
+                }
+            }
+        });
     }
 }

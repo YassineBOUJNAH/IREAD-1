@@ -17,7 +17,9 @@ import android.widget.TextView;
 
 import com.example.iread.model.DefiAccepted;
 import com.example.iread.model.Quiz;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -52,6 +54,7 @@ public class QuizActivity extends AppCompatActivity {
     String childe;
     private CollectionReference defi = FirebaseFirestore.getInstance().collection("Defi");
     private String userid= FirebaseAuth.getInstance().getCurrentUser().getUid();
+    private DefiAccepted defiAccepted;
 
 
 
@@ -329,51 +332,62 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onSuccess(QuerySnapshot documentSnapshots) {
                 for (DocumentSnapshot documentSnapshot : documentSnapshots){
-                    final DefiAccepted defiAccepted =documentSnapshot.toObject(DefiAccepted.class);
-                    if (defiAccepted.getUiSender() == userid)
+                     DefiAccepted defiAccepted =documentSnapshot.toObject(DefiAccepted.class);
+
+                    if (childe.equals(String.valueOf(defiAccepted.getLivre())))
                     {
-                        defi.document(documentSnapshot.getId()).update("note",correct);
-                        Log.d("key 1998",documentSnapshot.getId());
-                    }else {
-                        defi.document(documentSnapshot.getId()).collection("Friends").document(userid).update("note",correct);
-                        defi.document(documentSnapshot.getId()).collection("Friends").document(userid).get()
-                                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                                    @Override
-                                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                        switch (defiAccepted.getLivre()) {
-                                            case 1:
-                                                btn1.setText("Resulta");
-                                                break;
-                                            case 2:
-                                                btn2.setText("Resulta");
-                                                break;
-                                            case 3:
-                                                btn3.setText("Resulta");
-                                                break;
-                                            case 4:
-                                                btn4.setText("Resulta");
-                                                break;
-                                            case 5:
-                                                btn5.setText("Resulta");
-                                                break;
-                                        }
-                                    }
-                                });
+                        if (defiAccepted.getUiSender().equals(userid))
+                        {
+                            defi.document(documentSnapshot.getId()).update("note",correct+10);
+                            ChangeButton(defiAccepted.getLivre());
+                            ChangeActivity(documentSnapshot.getId(),defiAccepted.getUiSender(),String.valueOf(correct));
+
+                        }else {
+                            defi.document(documentSnapshot.getId()).collection("Friends").document(userid).update("note",correct+10);
+                            ChangeButton(defiAccepted.getLivre());
+                            ChangeActivity(documentSnapshot.getId(),defiAccepted.getUiSender(),String.valueOf(defiAccepted.getNote()-10));
+
+                        }
                     }
+
                 }
             }
         });
 
 
 
-        Intent intent = new Intent(QuizActivity.this,ResultatActivity.class);
-        intent.putExtra("total",String.valueOf(total-1));
-        intent.putExtra("correct",String.valueOf(correct));
-        intent.putExtra("incorrect",String.valueOf(wrong));
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
-        finish();
 
+
+    }
+
+    private void ChangeActivity(String id, String uiSender, String note) {
+        Intent myint = new Intent(getApplicationContext(), ResultatActivity.class);
+        myint.putExtra("docid",id);
+        myint.putExtra("sender",uiSender);
+        myint.putExtra("note",note);
+        myint.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(myint);
+        finish();
+    }
+
+    public void ChangeButton(int i){
+        switch (i) {
+            case 1:
+                btn1.setText("Resulta");
+                break;
+            case 2:
+                btn2.setText("Resulta");
+                break;
+            case 3:
+                btn3.setText("Resulta");
+                break;
+            case 4:
+                btn4.setText("Resulta");
+                break;
+            case 5:
+                btn5.setText("Resulta");
+                break;
+        }
     }
     @Override
     public void onBackPressed() {
